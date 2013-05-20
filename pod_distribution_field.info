@@ -1,0 +1,5 @@
+name = "Project Open Data Download URL Field"
+core = "7.x"
+description = "Provides a custom field for the /data listing's distribution (Download URL) property"
+project = "project_open_data"
+version = "7.x-1.0"
