@@ -2,3 +2,20 @@
 /**
  * @file project_open_data.module
  */
+
+/**
+ * Implements hook_menu().
+ */
+function project_open_data_menu() {
+  $items = array();
+
+  $items['data'] = array(
+    'title' => 'Data Catalog',
+    'description' => 'Listing of available data sources.',
+    'page callback' => 'project_open_data_catalog_page',
+    'access arguments' => array('access content'),
+    'file' => 'project_open_data.pages.inc',
+  );
+
+  return $items;
+}
