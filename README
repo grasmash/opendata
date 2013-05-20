@@ -1,25 +1,17 @@
-Project Open Data Download URL Field
-====================================
+Project Open Data
+=================
 
-This module provides Drupal with a basic custom field that includes two data
-elements per "row", format and access_url. These fields are described as
-"Download URL" and "Format" here: http://project-open-data.github.io/schema/
-and they should be displayed as an array at /data.json like this:
+This module provides helpful tools for websites implementing /data pages as
+described here:
 
-        "distribution": [
-            {   
-                "accessURL": "https://explore.data.gov/views/ykv5-fn9t/rows.csv?accessType=DOWNLOAD",
-                "format": "csv"
-            },
-            {   
-                "accessURL": "https://explore.data.gov/views/ykv5-fn9t/rows.json?accessType=DOWNLOAD",
-                "format": "json"
-            },
-            {   
-                "accessURL": "https://explore.data.gov/views/ykv5-fn9t/rows.xml?accessType=DOWNLOAD",
-                "format": "xml"
-            }
-        ],
+  http://project-open-data.github.io/
 
-For more information see: 
-  http://project-open-data.github.io/schema/
+
+TODO for 1.0 release:
+---------------------
+[ ] provide basic content type for data listing
+[ ] provide hook for modules that implement /data info programatically
+[ ] basic themeing for /data page
+[ ] /data.html
+[ ] /data.json
+[ ] UX for node/add/pod-item
