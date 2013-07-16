@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Project Open Data Content feature.
+ */
+
+include_once 'project_open_data_content.features.inc';
