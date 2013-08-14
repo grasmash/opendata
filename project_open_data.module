@@ -4,18 +4,76 @@
  */
 
 /**
- * Implements hook_menu().
+ * Implements hook_form_alter().
  */
-function project_open_data_menu() {
-  $items = array();
+function project_open_data_form_alter() {
+  // If this is a Project Open Data Item node add/edit form, alter it.
 
-  $items['data'] = array(
-    'title' => 'Data Catalog',
-    'description' => 'Listing of available data sources.',
-    'page callback' => 'project_open_data_catalog_page',
-    'access arguments' => array('access content'),
-    'file' => 'project_open_data.pages.inc',
-  );
+    // Was this data created by a person or cached by Project Open Data module
+    // on cron? 
+    
+    // If it was cached (provided by another module), are fields editable? If
+    // not set #enabled to FALSE.
+}
 
-  return $items;
+/**
+ * Implements hook_cron().
+ */
+function project_open_data_cron() {
+  // Check when update last ran. 
+
+    // If this ran less than 24 hours ago, end. No need to run this all the time
+    // if cron is set up to run frequently.
+
+    // If this last ran more than 24 hours ago, update cache.
+    project_open_data_update_cached_catalog();
+}
+
+/**
+ * Update cached data in catalog.
+ */
+function project_open_data_update_cached_catalog() {
+  // Get data from implementing modules.
+  $exclude = array('project_open_data_content');
+  $data = _project_open_data_invoke('project_open_data', $exclude);
+
+  // Check when this update was last run.
+  $last_update = variable_get('project_open_data_SOMETHING', 0);
+
+  // Loop through $data.
+  
+    // For any catalog item that either (A) does not exist in our cached data set as a
+    // pod-item node, (B) has been updated sometime after $last_update (Last Update/modified
+    // is a common core field, so every record should have this) add/update record.
+ 
+}
+
+/**
+ * This function is effectively a re-implementation of module_invoke_all(), with 
+ * the ability to exclude particular modules from being invoked.
+ *
+ * @param string $hook
+ *   Hook to invoke.
+ *
+ * @param array $exclude
+ *   Modules whose implementation of this hook should not be called.
+ */
+function _project_open_data_invoke($hook, $exclude = array()) {
+  foreach (module_implements($hook) as $module) {
+    if (in_array($module, $exclude) {
+      continue;
+    }
+    $function = $module . '_' . 'project_open_data';
+    if (function_exists($function)) {
+      $result = call_user_func_array($function, $args);
+      if (isset($result) && is_array($result)) {
+        $return = array_merge_recursive($return, $result);
+      }
+      elseif (isset($result)) {
+        $return[] = $result;
+      }
+    }
+  }
+
+  return $return;
 }
