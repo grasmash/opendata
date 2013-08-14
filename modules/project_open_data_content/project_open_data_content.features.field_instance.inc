@@ -43,7 +43,7 @@ function project_open_data_content_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -83,7 +83,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -126,7 +126,7 @@ function project_open_data_content_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 19,
+      'weight' => 7,
     ),
   );
 
@@ -166,7 +166,7 @@ function project_open_data_content_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -203,7 +203,7 @@ function project_open_data_content_field_default_field_instances() {
       'module' => 'pod_distribution_field',
       'settings' => array(),
       'type' => 'pod_distribution',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -243,7 +243,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 24,
+      'weight' => 12,
     ),
   );
 
@@ -280,7 +280,7 @@ function project_open_data_content_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 16,
+      'weight' => 4,
     ),
   );
 
@@ -320,7 +320,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 6,
     ),
   );
 
@@ -360,7 +360,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -400,7 +400,7 @@ function project_open_data_content_field_default_field_instances() {
         'rows' => 2,
       ),
       'type' => 'text_textarea',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -440,7 +440,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 23,
+      'weight' => 11,
     ),
   );
 
@@ -480,7 +480,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 5,
     ),
   );
 
@@ -520,7 +520,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -560,7 +560,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -600,7 +600,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 10,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -640,7 +640,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -680,7 +680,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -720,7 +720,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 21,
+      'weight' => 9,
     ),
   );
 
@@ -760,7 +760,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 10,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 3,
     ),
   );
 
@@ -800,7 +800,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 22,
+      'weight' => 10,
     ),
   );
 
@@ -840,7 +840,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -880,7 +880,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 25,
+      'weight' => 13,
     ),
   );
 
@@ -920,7 +920,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -960,7 +960,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 20,
+      'weight' => 8,
     ),
   );
 
@@ -1000,7 +1000,7 @@ function project_open_data_content_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
