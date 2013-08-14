@@ -1,7 +1,7 @@
 name = Project Open Data Content
 description = Provides content type for generating Project Open Data /data and /data.json pages.
 core = 7.x
-package = Features
+package = Project Open Data
 php = 5.2.4
 version = 7.x-1.0-alpha1
 project = project_open_data_content
