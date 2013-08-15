@@ -18,16 +18,9 @@ function opendata_settings() {
     '#description' => t('Use this to change various OpenData settings.'),
   );
 
-  $form['opendata']['opendata_cron'] = array(
-    '#type' => 'select',
-    '#title' => t('Selected'),
-    '#options' => array(
-      0 => t('No'),
-      1 => t('Yes'),
-    ),
-    '#default_value' => variable_get('opendata_cron', 0),
-    '#description' => t('Use the default system cron?')
-   );
+  $form['opendata']['cat'] = array(
+    '#markup' => t('Imagine this is a cat.'),
+  );
 
   return system_settings_form($form);
 }
