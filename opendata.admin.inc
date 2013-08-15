@@ -1,16 +1,23 @@
 <?php
 
 /**
+ * @file
  * Module settings.
  */
 
+/**
+ * Page callback for admninistrative form.
+ * @return [type] [description]
+ */
 function opendata_settings() {
+  $form = array();
+
   $form['settings']['help'] = array(
     '#type' => 'fieldset',
     '#title' => t('OpenData Settings'),
     '#description' => t('Use this to change various OpenData settings.'),
   );
-  
+
   $form['settings']['cron'] = array(
     '#type' => 'select',
     '#title' => t('Selected'),
@@ -21,5 +28,6 @@ function opendata_settings() {
     '#default_value' => 0,
     '#description' => t('Use the default system cron?')
    );
+
   return system_settings_form($form);
 }
