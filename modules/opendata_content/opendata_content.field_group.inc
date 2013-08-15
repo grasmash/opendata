@@ -13,42 +13,6 @@ function opendata_content_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_opendata_core|node|opendata_dataset|form';
-  $field_group->group_name = 'group_opendata_core';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'opendata_dataset';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Common Core (Required)',
-    'weight' => '0',
-    'children' => array(
-      0 => 'field_opendata_access_level',
-      1 => 'field_opendata_description',
-      2 => 'field_opendata_identifier',
-      3 => 'field_opendata_keyword',
-      4 => 'field_opendata_mbox',
-      5 => 'field_opendata_modified',
-      6 => 'field_opendata_person',
-      7 => 'field_opendata_publisher',
-      8 => 'title',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Common Core (Required)',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => '',
-        'description' => '',
-      ),
-      'formatter' => 'collapsed',
-    ),
-  );
-  $export['group_opendata_core|node|opendata_dataset|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_opendata_core_if_app|node|opendata_dataset|form';
   $field_group->group_name = 'group_opendata_core_if_app';
   $field_group->entity_type = 'node';
@@ -78,6 +42,42 @@ function opendata_content_field_group_info() {
     ),
   );
   $export['group_opendata_core_if_app|node|opendata_dataset|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_opendata_core|node|opendata_dataset|form';
+  $field_group->group_name = 'group_opendata_core';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'opendata_dataset';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Common Core (Required)',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_opendata_access_level',
+      1 => 'field_opendata_description',
+      2 => 'field_opendata_identifier',
+      3 => 'field_opendata_keyword',
+      4 => 'field_opendata_modified',
+      5 => 'field_opendata_person',
+      6 => 'field_opendata_publisher',
+      7 => 'field_opendata_mbox',
+      8 => 'title',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Common Core (Required)',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_opendata_core|node|opendata_dataset|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
