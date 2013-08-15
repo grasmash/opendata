@@ -1,0 +1,11 @@
+name = Project Open Data View
+core = 7.x
+package = Project Open Data
+php = 5.2.4
+dependencies[] = views
+dependencies[] = views_json
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = project_open_data
+features_exclude[dependencies][ctools] = ctools
+project path = sites/all/modules/contrib/project_open_data/modules
