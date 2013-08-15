@@ -10,8 +10,7 @@ function opendata_distribution_field_field_info() {
   return array(
     'opendata_distribution' => array(
       'label' => t('Project Open Data Download URL Field'),
-      'description' => t('This field pairs formats (e.g. json, csv) '
-                       . 'with accessUrl data.'),
+      'description' => t('This field pairs formats (e.g. json, csv) with accessUrl data.'),
       'settings' => array(),
       'instance_settings' => array(),
       'default_widget' => 'opendata_distribution',
@@ -35,9 +34,15 @@ function opendata_distribution_field_field_schema($field) {
       'length' => 10,
       'not null' => FALSE,
     );
+    $schema['columns']['size'] = array(
+      'type' => 'varchar',
+      'length' => 10,
+      'not null' => FALSE,
+    );
     $schema['indexes'] = array(
       'access_url' => array('access_url'),
       'format' => array('format'),
+      'size' => array('size'),
     );
 
     return $schema;
@@ -51,7 +56,8 @@ function opendata_distribution_field_field_is_empty($item, $field) {
   if ($field['type'] == 'opendata_distribution') {
     if (empty($item['access_url']) || empty($item['format'])) {
       return TRUE;
-    } else {
+    }
+    else {
       return FALSE;
     }
   }
@@ -71,9 +77,7 @@ function opendata_distribution_field_settings_form($field, $instance, $has_data)
 /**
  * Implements hook_field_validate().
  */
-function opendata_distribution_field_field_validate($obj_type, $object, $field,
-                                           $instance, $langcode, &$items,
-                                           &$errors) {
+function opendata_distribution_field_field_validate($obj_type, $object, $field, $instance, $langcode, &$items, &$errors) {
   if ($field['type'] == 'opendata_distribution') {
     foreach ($items as $delta => $item) {
       // Test URL.
@@ -82,9 +86,7 @@ function opendata_distribution_field_field_validate($obj_type, $object, $field,
         if (empty($item['format'])) {
           $errors[$field['field_name']][$langcode][$delta][] = array(
             'error' => 'opendata_distribution_format',
-            'message' => t('Please provide a format type (e.g. csv, xlsx, '
-                        . 'json) for the access URL: !url',
-                           array('!url' => $item['access_url'])),
+            'message' => t('Please provide a format type (e.g. csv, xlsx, json) for the access URL: !url', array('!url' => $item['access_url'])),
           );
         }
       }
@@ -115,9 +117,7 @@ function opendata_distribution_field_field_widget_info() {
 /**
  * Implements hook_field_widget_form().
  */
-function opendata_distribution_field_field_widget_form(&$form, &$form_state, $field,
-                                        $instance, $langcode, $items,
-                                        $delta, $element) {
+function opendata_distribution_field_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
   $base = $element;
 
   if ($instance['widget']['type'] == 'opendata_distribution') {
@@ -133,6 +133,13 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
       '#title' => t('Format'),
       '#default_value' => isset($items[$delta]['format']) ?
                           $items[$delta]['format'] : NULL,
+      '#weight' => 1,
+      ) + $base;
+    $element['size'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Size'),
+      '#default_value' => isset($items[$delta]['size']) ?
+                          $items[$delta]['size'] : NULL,
       '#weight' => 1,
       ) + $base;
   }
@@ -169,6 +176,7 @@ function opendata_distribution_field_field_formatter_view($entity_type, $entity,
     foreach ($items as $delta => $item) {
       $access_url = $item['access_url'];
       $format = $item['format'];
+      $size = $item['size'];
       $element[$delta] = array(
         '#theme' => 'item_list',
         '#title' => strtoupper($format),
@@ -177,6 +185,7 @@ function opendata_distribution_field_field_formatter_view($entity_type, $entity,
         '#items' => array(
           'Download URL: ' . l($access_url, $access_url),
           'Format: ' . $format,
+          'Size : ' . $size,
         ),
       );
     }
