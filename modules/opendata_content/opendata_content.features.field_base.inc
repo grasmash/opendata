@@ -1,22 +1,22 @@
 <?php
 /**
  * @file
- * project_open_data_content.features.field_base.inc
+ * opendata_content.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function project_open_data_content_field_default_field_bases() {
+function opendata_content_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_pod_access_level'
-  $field_bases['field_pod_access_level'] = array(
+  // Exported field_base: 'field_opendata_access_level'
+  $field_bases['field_opendata_access_level'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_access_level',
+    'field_name' => 'field_opendata_access_level',
     'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
@@ -37,13 +37,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_pod_data_dictionary'
-  $field_bases['field_pod_data_dictionary'] = array(
+  // Exported field_base: 'field_opendata_data_dictionary'
+  $field_bases['field_opendata_data_dictionary'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_data_dictionary',
+    'field_name' => 'field_opendata_data_dictionary',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -66,13 +66,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_data_quality'
-  $field_bases['field_pod_data_quality'] = array(
+  // Exported field_base: 'field_opendata_data_quality'
+  $field_bases['field_opendata_data_quality'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_data_quality',
+    'field_name' => 'field_opendata_data_quality',
     'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
@@ -92,13 +92,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_pod_description'
-  $field_bases['field_pod_description'] = array(
+  // Exported field_base: 'field_opendata_description'
+  $field_bases['field_opendata_description'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_description',
+    'field_name' => 'field_opendata_description',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -119,13 +119,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_pod_distribution'
-  $field_bases['field_pod_distribution'] = array(
+  // Exported field_base: 'field_opendata_distribution'
+  $field_bases['field_opendata_distribution'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_distribution',
+    'field_name' => 'field_opendata_distribution',
     'foreign keys' => array(),
     'indexes' => array(
       'access_url' => array(
@@ -136,19 +136,19 @@ function project_open_data_content_field_default_field_bases() {
       ),
     ),
     'locked' => 0,
-    'module' => 'pod_distribution_field',
+    'module' => 'opendata_distribution_field',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'pod_distribution',
+    'type' => 'opendata_distribution',
   );
 
-  // Exported field_base: 'field_pod_feed'
-  $field_bases['field_pod_feed'] = array(
+  // Exported field_base: 'field_opendata_feed'
+  $field_bases['field_opendata_feed'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_feed',
+    'field_name' => 'field_opendata_feed',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -171,13 +171,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_frequency'
-  $field_bases['field_pod_frequency'] = array(
+  // Exported field_base: 'field_opendata_frequency'
+  $field_bases['field_opendata_frequency'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_frequency',
+    'field_name' => 'field_opendata_frequency',
     'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
@@ -200,13 +200,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_pod_granularity'
-  $field_bases['field_pod_granularity'] = array(
+  // Exported field_base: 'field_opendata_granularity'
+  $field_bases['field_opendata_granularity'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_granularity',
+    'field_name' => 'field_opendata_granularity',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -229,13 +229,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_identifier'
-  $field_bases['field_pod_identifier'] = array(
+  // Exported field_base: 'field_opendata_identifier'
+  $field_bases['field_opendata_identifier'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_identifier',
+    'field_name' => 'field_opendata_identifier',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -258,13 +258,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_keyword'
-  $field_bases['field_pod_keyword'] = array(
+  // Exported field_base: 'field_opendata_keyword'
+  $field_bases['field_opendata_keyword'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_keyword',
+    'field_name' => 'field_opendata_keyword',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -285,13 +285,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_pod_landing_page'
-  $field_bases['field_pod_landing_page'] = array(
+  // Exported field_base: 'field_opendata_landing_page'
+  $field_bases['field_opendata_landing_page'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_landing_page',
+    'field_name' => 'field_opendata_landing_page',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -314,13 +314,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_language'
-  $field_bases['field_pod_language'] = array(
+  // Exported field_base: 'field_opendata_language'
+  $field_bases['field_opendata_language'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_language',
+    'field_name' => 'field_opendata_language',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -343,13 +343,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_license'
-  $field_bases['field_pod_license'] = array(
+  // Exported field_base: 'field_opendata_license'
+  $field_bases['field_opendata_license'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_license',
+    'field_name' => 'field_opendata_license',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -372,13 +372,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_mbox'
-  $field_bases['field_pod_mbox'] = array(
+  // Exported field_base: 'field_opendata_mbox'
+  $field_bases['field_opendata_mbox'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_mbox',
+    'field_name' => 'field_opendata_mbox',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -401,13 +401,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_modified'
-  $field_bases['field_pod_modified'] = array(
+  // Exported field_base: 'field_opendata_modified'
+  $field_bases['field_opendata_modified'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_modified',
+    'field_name' => 'field_opendata_modified',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -430,13 +430,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_person'
-  $field_bases['field_pod_person'] = array(
+  // Exported field_base: 'field_opendata_person'
+  $field_bases['field_opendata_person'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_person',
+    'field_name' => 'field_opendata_person',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -459,13 +459,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_publisher'
-  $field_bases['field_pod_publisher'] = array(
+  // Exported field_base: 'field_opendata_publisher'
+  $field_bases['field_opendata_publisher'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_publisher',
+    'field_name' => 'field_opendata_publisher',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -488,13 +488,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_references'
-  $field_bases['field_pod_references'] = array(
+  // Exported field_base: 'field_opendata_references'
+  $field_bases['field_opendata_references'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_references',
+    'field_name' => 'field_opendata_references',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -517,13 +517,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_release_date'
-  $field_bases['field_pod_release_date'] = array(
+  // Exported field_base: 'field_opendata_release_date'
+  $field_bases['field_opendata_release_date'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_release_date',
+    'field_name' => 'field_opendata_release_date',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -546,13 +546,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_size'
-  $field_bases['field_pod_size'] = array(
+  // Exported field_base: 'field_opendata_size'
+  $field_bases['field_opendata_size'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_size',
+    'field_name' => 'field_opendata_size',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -575,13 +575,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_spatial'
-  $field_bases['field_pod_spatial'] = array(
+  // Exported field_base: 'field_opendata_spatial'
+  $field_bases['field_opendata_spatial'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_spatial',
+    'field_name' => 'field_opendata_spatial',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -604,13 +604,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_system_of_records'
-  $field_bases['field_pod_system_of_records'] = array(
+  // Exported field_base: 'field_opendata_system_of_records'
+  $field_bases['field_opendata_system_of_records'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_system_of_records',
+    'field_name' => 'field_opendata_system_of_records',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -633,13 +633,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_temporal'
-  $field_bases['field_pod_temporal'] = array(
+  // Exported field_base: 'field_opendata_temporal'
+  $field_bases['field_opendata_temporal'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_temporal',
+    'field_name' => 'field_opendata_temporal',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -662,13 +662,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_theme'
-  $field_bases['field_pod_theme'] = array(
+  // Exported field_base: 'field_opendata_theme'
+  $field_bases['field_opendata_theme'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_theme',
+    'field_name' => 'field_opendata_theme',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -691,13 +691,13 @@ function project_open_data_content_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pod_web_service'
-  $field_bases['field_pod_web_service'] = array(
+  // Exported field_base: 'field_opendata_web_service'
+  $field_bases['field_opendata_web_service'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_pod_web_service',
+    'field_name' => 'field_opendata_web_service',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(

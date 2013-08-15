@@ -4,4 +4,4 @@
  * Code for the Project Open Data View feature.
  */
 
-include_once 'project_open_data_view.features.inc';
+include_once 'opendata_view.features.inc';

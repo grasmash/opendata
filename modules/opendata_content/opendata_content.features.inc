@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * project_open_data_content.features.inc
+ * opendata_content.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function project_open_data_content_ctools_plugin_api() {
+function opendata_content_ctools_plugin_api() {
   list($module, $api) = func_get_args();
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
@@ -17,10 +17,10 @@ function project_open_data_content_ctools_plugin_api() {
 /**
  * Implements hook_node_info().
  */
-function project_open_data_content_node_info() {
+function opendata_content_node_info() {
   $items = array(
-    'pod_item' => array(
-      'name' => t('Project Open Data Item'),
+    'opendata_dataset' => array(
+      'name' => t('Dataset'),
       'base' => 'node_content',
       'description' => t('Add an item to your data listing. This content type includes all "common core" required fields described by Project Open Data here: http://project-open-data.github.io/schema/.
 

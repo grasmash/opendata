@@ -4,4 +4,4 @@
  * Code for the Project Open Data Content feature.
  */
 
-include_once 'project_open_data_content.features.inc';
+include_once 'opendata_content.features.inc';
