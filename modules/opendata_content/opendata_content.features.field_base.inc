@@ -134,6 +134,9 @@ function opendata_content_field_default_field_bases() {
       'format' => array(
         0 => 'format',
       ),
+      'size' => array(
+        0 => 'size',
+      ),
     ),
     'locked' => 0,
     'module' => 'opendata_distribution_field',

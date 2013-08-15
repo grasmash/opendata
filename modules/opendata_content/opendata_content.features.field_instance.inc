@@ -34,7 +34,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_access_level',
     'label' => 'Public Access Level',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -154,7 +154,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_description',
     'label' => 'Description',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -348,7 +348,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_identifier',
     'label' => 'Unique Identifier',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -388,7 +388,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_keyword',
     'label' => 'Tags',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -548,7 +548,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_mbox',
     'label' => 'Contact Email',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -588,7 +588,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_modified',
     'label' => 'Last Update',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -628,7 +628,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_person',
     'label' => 'Contact Name',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -668,7 +668,7 @@ function opendata_content_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_opendata_publisher',
     'label' => 'Publisher',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
