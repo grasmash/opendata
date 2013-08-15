@@ -19,17 +19,30 @@ function project_open_data_form_alter() {
 /**
  * Implements hook_menu().
  */
-function project_open_data_menu() {
-  $items['admin/config/services/project-open-data'] = array(
-    'title' => 'Open Data',
-    'description' => 'Access Open Data settings',
+function opendata_menu() {
+  $items['admin/config/services/opendata'] = array(
+    'title' => 'OpenData',
+    'description' => 'Access OpenData settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('project_open_data_settings'),
+    'page arguments' => array('opendata_settings'),
     'access arguments' => array('administer site configuration'),
-    'file' => 'project_open_data.admin.inc',
+    'file' => 'opendata.admin.inc',
   );
   return $items;
 }
+
+/**
+  * Implements hook_help();
+  */
+ function opendata_help($path, $arg) {
+ switch ($path) {
+ case 'admin/help#opendata':
+   $output = '';
+   $output .= '<h3>' . t('About') . '</h3>';
+   $output .= '<p>' . t("A helpful entry about your module") . '<p>';
+ return $output;
+   }
+ }
 
 /**
  * Implements hook_cron().
