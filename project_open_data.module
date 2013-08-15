@@ -17,6 +17,21 @@ function project_open_data_form_alter() {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function project_open_data_menu() {
+  $items['admin/config/services/project-open-data'] = array(
+    'title' => 'Open Data',
+    'description' => 'Access Open Data settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('project_open_data_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'project_open_data.admin.inc',
+  );
+  return $items;
+}
+
+/**
  * Implements hook_cron().
  */
 function project_open_data_cron() {
