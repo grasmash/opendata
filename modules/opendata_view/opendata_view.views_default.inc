@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * project_open_data_view.views_default.inc
+ * opendata_view.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function project_open_data_view_views_default_views() {
+function opendata_view_views_default_views() {
   $export = array();
 
   $view = new view();

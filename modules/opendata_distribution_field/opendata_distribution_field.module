@@ -17,7 +17,7 @@ function opendata_distribution_field_field_info() {
       'default_widget' => 'opendata_distribution',
       'default_formatter' => 'opendata_distribution_default',
     ),
-  );  
+  );
 }
 
 /**
@@ -41,7 +41,7 @@ function opendata_distribution_field_field_schema($field) {
     );
 
     return $schema;
-  }  
+  }
 }
 
 /**
@@ -50,9 +50,9 @@ function opendata_distribution_field_field_schema($field) {
 function opendata_distribution_field_field_is_empty($item, $field) {
   if ($field['type'] == 'opendata_distribution') {
     if (empty($item['access_url']) || empty($item['format'])) {
-      return TRUE; 
+      return TRUE;
     } else {
-      return FALSE; 
+      return FALSE;
     }
   }
 }
@@ -62,9 +62,9 @@ function opendata_distribution_field_field_is_empty($item, $field) {
  */
 function opendata_distribution_field_settings_form($field, $instance, $has_data) {
   if ($field['type'] == 'opendata_distribution') {
-    $settings = $field['setings'];  
+    $settings = $field['setings'];
     $form = '';
-    return $form; 
+    return $form;
   }
 }
 
@@ -76,21 +76,21 @@ function opendata_distribution_field_field_validate($obj_type, $object, $field,
                                            &$errors) {
   if ($field['type'] == 'opendata_distribution') {
     foreach ($items as $delta => $item) {
-      // Test URL. 
+      // Test URL.
       if (!empty($item['access_url'])) {
         // If URL isn't empty, we need a format.
         if (empty($item['format'])) {
-          $errors[$field['field_name']][$langcode][$delta][] = array( 
+          $errors[$field['field_name']][$langcode][$delta][] = array(
             'error' => 'opendata_distribution_format',
             'message' => t('Please provide a format type (e.g. csv, xlsx, '
-                        . 'json) for the access URL: !url', 
+                        . 'json) for the access URL: !url',
                            array('!url' => $item['access_url'])),
           );
         }
-      } 
+      }
       // URL field is empty. Set everything else to empty.
       else {
-        unset($items);    
+        unset($items);
       }
     }
   }
@@ -118,20 +118,20 @@ function opendata_distribution_field_field_widget_info() {
 function opendata_distribution_field_field_widget_form(&$form, &$form_state, $field,
                                         $instance, $langcode, $items,
                                         $delta, $element) {
-  $base = $element;   
-  
+  $base = $element;
+
   if ($instance['widget']['type'] == 'opendata_distribution') {
     $element['access_url'] = array(
       '#type' => 'textfield',
       '#title' => t('Download URL'),
-      '#default_value' => isset($items[$delta]['access_url']) ? 
+      '#default_value' => isset($items[$delta]['access_url']) ?
                           $items[$delta]['access_url'] : NULL,
       '#weight' => 0,
       ) + $base;
     $element['format'] = array(
       '#type' => 'textfield',
       '#title' => t('Format'),
-      '#default_value' => isset($items[$delta]['format']) ? 
+      '#default_value' => isset($items[$delta]['format']) ?
                           $items[$delta]['format'] : NULL,
       '#weight' => 1,
       ) + $base;
@@ -142,14 +142,14 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
 /**
  * Implements hook_field_formatter_info().
  */
-function opendata_distribution_field_field_formatter_info() { 
+function opendata_distribution_field_field_formatter_info() {
   return array(
     'opendata_distribution_default' => array(
       'label' => t('Project Open Data Download URL'),
       'field types' => array('opendata_distribution'),
     ),
   );
-} 
+}
 
 /**
  *
