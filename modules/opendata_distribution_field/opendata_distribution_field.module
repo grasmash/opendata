@@ -1,21 +1,21 @@
 <?php
 /**
- * @file pod_distribution_field.module
+ * @file opendata_distribution_field.module
  */
 
 /**
  * Implements hook_field_info().
  */
-function pod_distribution_field_field_info() {
+function opendata_distribution_field_field_info() {
   return array(
-    'pod_distribution' => array(
+    'opendata_distribution' => array(
       'label' => t('Project Open Data Download URL Field'),
       'description' => t('This field pairs formats (e.g. json, csv) '
                        . 'with accessUrl data.'),
       'settings' => array(),
       'instance_settings' => array(),
-      'default_widget' => 'pod_distribution',
-      'default_formatter' => 'pod_distribution_default',
+      'default_widget' => 'opendata_distribution',
+      'default_formatter' => 'opendata_distribution_default',
     ),
   );  
 }
@@ -23,8 +23,8 @@ function pod_distribution_field_field_info() {
 /**
  * Implements magic callback / psuedo-hook mymodule_field_schema().
  */
-function pod_distribution_field_field_schema($field) {
-  if ($field['type'] == 'pod_distribution') {
+function opendata_distribution_field_field_schema($field) {
+  if ($field['type'] == 'opendata_distribution') {
     $schema['columns']['access_url'] = array(
       'type' => 'varchar',
       'length' => 255,
@@ -47,8 +47,8 @@ function pod_distribution_field_field_schema($field) {
 /**
  * Implements magic callback / psuedo-hook mymodule_field_is_empty().
  */
-function pod_distribution_field_field_is_empty($item, $field) {
-  if ($field['type'] == 'pod_distribution') {
+function opendata_distribution_field_field_is_empty($item, $field) {
+  if ($field['type'] == 'opendata_distribution') {
     if (empty($item['access_url']) || empty($item['format'])) {
       return TRUE; 
     } else {
@@ -60,8 +60,8 @@ function pod_distribution_field_field_is_empty($item, $field) {
 /**
  * Implements magic callback / psuedo-hook mymodule_field_settings_form().
  */
-function pod_distribution_field_settings_form($field, $instance, $has_data) {
-  if ($field['type'] == 'pod_distribution') {
+function opendata_distribution_field_settings_form($field, $instance, $has_data) {
+  if ($field['type'] == 'opendata_distribution') {
     $settings = $field['setings'];  
     $form = '';
     return $form; 
@@ -71,17 +71,17 @@ function pod_distribution_field_settings_form($field, $instance, $has_data) {
 /**
  * Implements hook_field_validate().
  */
-function pod_distribution_field_field_validate($obj_type, $object, $field,
+function opendata_distribution_field_field_validate($obj_type, $object, $field,
                                            $instance, $langcode, &$items,
                                            &$errors) {
-  if ($field['type'] == 'pod_distribution') {
+  if ($field['type'] == 'opendata_distribution') {
     foreach ($items as $delta => $item) {
       // Test URL. 
       if (!empty($item['access_url'])) {
         // If URL isn't empty, we need a format.
         if (empty($item['format'])) {
           $errors[$field['field_name']][$langcode][$delta][] = array( 
-            'error' => 'pod_distribution_format',
+            'error' => 'opendata_distribution_format',
             'message' => t('Please provide a format type (e.g. csv, xlsx, '
                         . 'json) for the access URL: !url', 
                            array('!url' => $item['access_url'])),
@@ -100,11 +100,11 @@ function pod_distribution_field_field_validate($obj_type, $object, $field,
 /**
  * Implements hook_field_widget_info().
  */
-function pod_distribution_field_field_widget_info() {
+function opendata_distribution_field_field_widget_info() {
   return array(
-    'pod_distribution' => array(
+    'opendata_distribution' => array(
       'label' => t('Project Open Data Download URL'),
-      'field types' => array('pod_distribution'),
+      'field types' => array('opendata_distribution'),
       'description' => t('URL providing direct access to the downloadable '
                        . 'distribution of a dataset, along with file format '
                        . 'or API type of the distribution.'),
@@ -115,12 +115,12 @@ function pod_distribution_field_field_widget_info() {
 /**
  * Implements hook_field_widget_form().
  */
-function pod_distribution_field_field_widget_form(&$form, &$form_state, $field,
+function opendata_distribution_field_field_widget_form(&$form, &$form_state, $field,
                                         $instance, $langcode, $items,
                                         $delta, $element) {
   $base = $element;   
   
-  if ($instance['widget']['type'] == 'pod_distribution') {
+  if ($instance['widget']['type'] == 'opendata_distribution') {
     $element['access_url'] = array(
       '#type' => 'textfield',
       '#title' => t('Download URL'),
@@ -142,11 +142,11 @@ function pod_distribution_field_field_widget_form(&$form, &$form_state, $field,
 /**
  * Implements hook_field_formatter_info().
  */
-function pod_distribution_field_field_formatter_info() { 
+function opendata_distribution_field_field_formatter_info() { 
   return array(
-    'pod_distribution_default' => array(
+    'opendata_distribution_default' => array(
       'label' => t('Project Open Data Download URL'),
-      'field types' => array('pod_distribution'),
+      'field types' => array('opendata_distribution'),
     ),
   );
 } 
@@ -155,17 +155,17 @@ function pod_distribution_field_field_formatter_info() {
  *
  */
 /*
-function pod_distribution_field_field_load($entity_type, $entities, $field, $instances, $langcode, &$items) {
+function opendata_distribution_field_field_load($entity_type, $entities, $field, $instances, $langcode, &$items) {
 }
 // */
 
 /**
  * Implements hook_field_formatter_view().
  */
-function pod_distribution_field_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+function opendata_distribution_field_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
 
-  if ($display['type'] == 'pod_distribution_default') {
+  if ($display['type'] == 'opendata_distribution_default') {
     foreach ($items as $delta => $item) {
       $access_url = $item['access_url'];
       $format = $item['format'];
