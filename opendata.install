@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * Implements hook_requirements();
+ **/
+
+// If the path /data or data.json exists, refuse to install otherwise
+// we might mess things up on an existing site.
+
+
+function opendata_requirements($phase = 'install') {
+	$requirements = array();
+	$t = get_t();
+
+	
+	if (drupal_lookup_path('source', 'data') or drupal_lookup_path('source', 'data.json')) {
+		$requirements['path_exists'] = array(
+			'title' => $t('Path Exists!'),
+			'description' => 'Path data or data.json exists, cannot enable.',
+			'severity' => REQUIREMENT_ERROR,
+			);
+	}
+	return $requirements;
+	dsm($requirements);
+}

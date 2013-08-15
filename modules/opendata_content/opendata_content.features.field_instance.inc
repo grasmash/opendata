@@ -96,7 +96,7 @@ function opendata_content_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Check here if this dataset meets the agency’s Information Quality Guidelines.',
+    'description' => 'Check here if this dataset meets the agency\'s Information Quality Guidelines.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -409,7 +409,7 @@ function opendata_content_field_default_field_instances() {
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Alternative landing page used to redirect user to a contextual, Agency-hosted “homepage” for the Dataset or API when selecting this resource from the Data.gov user interface.',
+    'description' => 'Alternative landing page used to redirect user to a contextual, Agency-hosted "homepage" for the Dataset or API when selecting this resource from the Data.gov user interface.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -529,7 +529,7 @@ function opendata_content_field_default_field_instances() {
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Contact person’s email address.',
+    'description' => 'Contact person\'s email address.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -568,7 +568,7 @@ function opendata_content_field_default_field_instances() {
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Most recent date on which the dataset was changed, updated or modified. Dates should be formatted as YYYY-MM-DD. Specify “01” as the day if unknown. If this file is brand-new, enter the issued date here as well.',
+    'description' => 'Most recent date on which the dataset was changed, updated or modified. Dates should be formatted as YYYY-MM-DD. Specify "01" as the day if unknown. If this file is brand-new, enter the issued date here as well.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -608,7 +608,7 @@ function opendata_content_field_default_field_instances() {
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Contact person’s name for the asset.',
+    'description' => 'Contact person\'s name for the asset.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1006,14 +1006,14 @@ function opendata_content_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('A unique identifier for the dataset or API as maintained within an Agency catalog or database.');
-  t('Alternative landing page used to redirect user to a contextual, Agency-hosted “homepage” for the Dataset or API when selecting this resource from the Data.gov user interface.');
+  t('Alternative landing page used to redirect user to a contextual, Agency-hosted "homepage" for the Dataset or API when selecting this resource from the Data.gov user interface.');
   t('Category');
-  t('Check here if this dataset meets the agency’s Information Quality Guidelines.');
+  t('Check here if this dataset meets the agency\'s Information Quality Guidelines.');
   t('Comma separated list of keywords to help users discover your dataset. Please include terms that would be used by technical and non-technical users.');
   t('Contact Email');
   t('Contact Name');
-  t('Contact person’s email address.');
-  t('Contact person’s name for the asset.');
+  t('Contact person\'s email address.');
+  t('Contact person\'s name for the asset.');
   t('Data Dictionary');
   t('Data Quality');
   t('Date of formal issuance. YYYY-MM-DD.');
@@ -1031,7 +1031,7 @@ function opendata_content_field_default_field_instances() {
   t('Level of granularity of the dataset.');
   t('License');
   t('Main thematic category of the dataset.');
-  t('Most recent date on which the dataset was changed, updated or modified. Dates should be formatted as YYYY-MM-DD. Specify “01” as the day if unknown. If this file is brand-new, enter the issued date here as well.');
+  t('Most recent date on which the dataset was changed, updated or modified. Dates should be formatted as YYYY-MM-DD. Specify "01" as the day if unknown. If this file is brand-new, enter the issued date here as well.');
   t('Public Access Level');
   t('Publisher');
   t('RSS Feed');
