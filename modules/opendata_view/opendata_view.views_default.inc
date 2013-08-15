@@ -268,7 +268,7 @@ function opendata_view_views_default_views() {
 
   /* Display: HTML */
   $handler = $view->new_display('page', 'HTML', 'page');
-  $handler->display->display_options['path'] = 'data';
+  $handler->display->display_options['path'] = variable_get('opendata_path_html', 'data');
 
   /* Display: JSON */
   $handler = $view->new_display('page', 'JSON', 'page_1');
@@ -527,7 +527,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_feed']['settings'] = array(
     'emphasis' => 0,
   );
-  $handler->display->display_options['path'] = 'data.json';
+  $handler->display->display_options['path'] = variable_get('opendata_path_json', 'data.json');
   $export['project_open_data'] = $view;
 
   return $export;
