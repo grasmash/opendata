@@ -6,7 +6,7 @@
 /**
  * Implements hook_form_alter().
  */
-function opendata_form_alter() {
+function opendata_form_alter(&$form, $form_state, $form_id) {
   // If this is a Project Open Data Item node add/edit form, alter it.
 
     // Was this data created by a person or cached by Project Open Data module
