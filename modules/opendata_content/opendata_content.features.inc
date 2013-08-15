@@ -27,7 +27,7 @@ function opendata_content_node_info() {
 Please note: Unless the field description says, "Optional", it is considered a required field by the US federal government. '),
       'has_title' => '1',
       'title_label' => t('Title'),
-      'help' => t('Human-readable name of the asset. Should be in plain English and include sufficient detail to facilitate search and discovery. -- Common Core” Required Field'),
+      'help' => t('Human-readable name of the asset. Should be in plain English and include sufficient detail to facilitate search and discovery. -- "Common Core” Required Field'),
     ),
   );
   return $items;

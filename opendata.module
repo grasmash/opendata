@@ -60,6 +60,8 @@ function opendata_update_cached_catalog() {
  *   Modules whose implementation of this hook should not be called.
  */
 function _opendata_invoke($hook, $exclude = array()) {
+  $return = array();
+
   foreach (module_implements($hook) as $module) {
     if (in_array($module, $exclude)) {
       continue;
