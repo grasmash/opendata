@@ -12,20 +12,20 @@
 function opendata_settings() {
   $form = array();
 
-  $form['settings']['help'] = array(
+  $form['opendata']['help'] = array(
     '#type' => 'fieldset',
     '#title' => t('OpenData Settings'),
     '#description' => t('Use this to change various OpenData settings.'),
   );
 
-  $form['settings']['cron'] = array(
+  $form['opendata']['opendata_cron'] = array(
     '#type' => 'select',
     '#title' => t('Selected'),
     '#options' => array(
       0 => t('No'),
       1 => t('Yes'),
     ),
-    '#default_value' => 0,
+    '#default_value' => variable_get('opendata_cron', 0),
     '#description' => t('Use the default system cron?')
    );
 
