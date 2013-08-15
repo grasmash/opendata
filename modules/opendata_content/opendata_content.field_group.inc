@@ -13,10 +13,10 @@ function opendata_content_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_opendata_common_core|node|opendata_item|form';
+  $field_group->identifier = 'group_opendata_common_core|node|opendata_dataset|form';
   $field_group->group_name = 'group_opendata_common_core';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'opendata_item';
+  $field_group->bundle = 'opendata_dataset';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
@@ -44,15 +44,15 @@ function opendata_content_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_opendata_common_core|node|opendata_item|form'] = $field_group;
+  $export['group_opendata_common_core|node|opendata_dataset|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_opendata_core_if_applicable|node|opendata_item|form';
+  $field_group->identifier = 'group_opendata_core_if_applicable|node|opendata_dataset|form';
   $field_group->group_name = 'group_opendata_core_if_applicable';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'opendata_item';
+  $field_group->bundle = 'opendata_dataset';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
@@ -77,15 +77,15 @@ function opendata_content_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_opendata_core_if_applicable|node|opendata_item|form'] = $field_group;
+  $export['group_opendata_core_if_applicable|node|opendata_dataset|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_opendata_expanded_fields|node|opendata_item|form';
+  $field_group->identifier = 'group_opendata_expanded_fields|node|opendata_dataset|form';
   $field_group->group_name = 'group_opendata_expanded_fields';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'opendata_item';
+  $field_group->bundle = 'opendata_dataset';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
@@ -115,7 +115,7 @@ function opendata_content_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_opendata_expanded_fields|node|opendata_item|form'] = $field_group;
+  $export['group_opendata_expanded_fields|node|opendata_dataset|form'] = $field_group;
 
   return $export;
 }
