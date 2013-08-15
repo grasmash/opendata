@@ -11,7 +11,7 @@ function opendata_view_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'project_open_data';
+  $view->name = 'opendata';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
@@ -528,7 +528,7 @@ function opendata_view_views_default_views() {
     'emphasis' => 0,
   );
   $handler->display->display_options['path'] = variable_get('opendata_path_json', 'data.json');
-  $export['project_open_data'] = $view;
+  $export['opendata'] = $view;
 
   return $export;
 }
