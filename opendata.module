@@ -4,6 +4,12 @@
  */
 
 /**
+ * Implements hook_form_alter().
+ */
+function opendata_form_alter(&$form, $form_state, $form_id) {
+}
+
+/**
  * Implements hook_menu().
  */
 function opendata_menu() {
