@@ -6,14 +6,7 @@
 /**
  * Implements hook_form_alter().
  */
-function opendata_form_alter() {
-  // If this is a Project Open Data Item node add/edit form, alter it.
-
-    // Was this data created by a person or cached by Project Open Data module
-    // on cron?
-
-    // If it was cached (provided by another module), are fields editable? If
-    // not set #enabled to FALSE.
+function opendata_form_alter(&$form, $form_state, $form_id) {
 }
 
 /**
@@ -43,70 +36,3 @@ function opendata_menu() {
  return $output;
    }
  }
-
-/**
- * Implements hook_cron().
- */
-function opendata_cron() {
-  // Check when update last ran.
-
-    // If this ran less than 24 hours ago, end. No need to run this all the time
-    // if cron is set up to run frequently.
-
-    // If this last ran more than 24 hours ago, update cache.
-    opendata_update_cached_catalog();
-}
-
-/**
- * Update cached data in catalog.
- */
-function opendata_update_cached_catalog() {
-  // Get data from implementing modules.
-  $exclude = array('opendata_content');
-  $data = _opendata_invoke('opendata', $exclude);
-
-  // Check when this update was last run.
-  // @todo Itegrate this with an admin form.
-  $last_update = variable_get('opendata_SOMETHING', 0);
-
-  // Loop through $data.
-
-    // For any catalog item that either (A) does not exist in our cached data set as a
-    // pod-item node, (B) has been updated sometime after $last_update (Last Update/modified
-    // is a common core field, so every record should have this) add/update record.
-
-}
-
-/**
- * This function is effectively a re-implementation of module_invoke_all(), with
- * the ability to exclude particular modules from being invoked.
- *
- * @param string $hook
- *   Hook to invoke.
- *
- * @param array $exclude
- *   Modules whose implementation of this hook should not be called.
- */
-function _opendata_invoke($hook, $exclude = array()) {
-  $return = array();
-
-  foreach (module_implements($hook) as $module) {
-    if (in_array($module, $exclude)) {
-      continue;
-    }
-    $function = $module . '_' . 'opendata';
-    if (function_exists($function)) {
-      $result = call_user_func_array($function, $args);
-      if (isset($result) && is_array($result)) {
-        $return = array_merge_recursive($return, $result);
-      }
-      elseif (isset($result)) {
-        $return[] = $result;
-      }
-    }
-  }
-
-  // @todo use drupal_alter() to allow create an alter hook.
-
-  return $return;
-}
