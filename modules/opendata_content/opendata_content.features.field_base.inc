@@ -382,26 +382,13 @@ function opendata_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_opendata_mbox',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'foreign keys' => array(),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 80,
-    ),
+    'module' => 'email',
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'email',
   );
 
   // Exported field_base: 'field_opendata_modified'
