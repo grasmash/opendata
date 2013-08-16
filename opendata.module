@@ -18,7 +18,7 @@ function opendata_form_alter(&$form, $form_state, $form_id) {
 /**
  * Generates a unique ID.
  *
- * @return string
+ * @return strip
  *   A unique string.
  */
 function opendata_uuid() {

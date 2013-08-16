@@ -48,7 +48,7 @@ function opendata_view_save_view_handler($form, $formstate) {
   $view = $formstate['opendata_view'];
 
   if ($view->type == 'Overridden') {
-    // Get the new paths
+    // Get the new paths.
     $htmlpath = $formstate['values']['opendata_path_html'];
     $jsonpath = $formstate['values']['opendata_path_json'];
 
