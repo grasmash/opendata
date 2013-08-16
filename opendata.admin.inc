@@ -12,14 +12,8 @@
 function opendata_settings() {
   $form = array();
 
-  $form['opendata']['opendata_help'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('OpenData Settings'),
-    '#description' => t('Use this to change various OpenData settings.'),
-  );
-
-  $form['opendata']['open_datacat'] = array(
-    '#markup' => t('Imagine this is a cat.'),
+  $form['opendata_help'] = array(
+    '#markup' => t('Use this form to change various OpenData settings.'),
   );
 
   $form['opendata']['opendata_theming'] = array(

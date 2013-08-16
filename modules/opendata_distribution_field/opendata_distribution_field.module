@@ -159,12 +159,11 @@ function opendata_distribution_field_field_formatter_info() {
 }
 
 /**
- *
+ * Implements hook_field_load().
  */
 /*
 function opendata_distribution_field_field_load($entity_type, $entities, $field, $instances, $langcode, &$items) {
 }
-// */
 
 /**
  * Implements hook_field_formatter_view().

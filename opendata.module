@@ -7,9 +7,9 @@
  * Implements hook_form_alter().
  */
 function opendata_form_alter(&$form, $form_state, $form_id) {
-  if ( $form_id == 'opendata_dataset_node_form' ) {
-    if ( empty($form['field_opendata_identifier'][LANGUAGE_NONE][0]['value']['#default_value']) ) {
-      // Code blatantly stolen from Com::generate
+  if ($form_id == 'opendata_dataset_node_form' ) {
+    if (empty($form['field_opendata_identifier'][LANGUAGE_NONE][0]['value']['#default_value'])) {
+      // Code blatantly stolen from Com::generate.
       $form['field_opendata_identifier']['und'][0]['value']['#default_value'] = opendata_uuid();
     }
   }
@@ -17,9 +17,12 @@ function opendata_form_alter(&$form, $form_state, $form_id) {
 
 /**
  * Generates a unique ID.
+ *
+ * @return string
+ *   A unique string.
  */
 function opendata_uuid() {
-  return strtolower(sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)))
+  return strtolower(sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)));
 }
 
 /**
@@ -47,14 +50,14 @@ function opendata_views_post_render(&$view, &$output, &$cache) {
 }
 
 /**
-  * Implements hook_help();
-  */
- function opendata_help($path, $arg) {
- switch ($path) {
- case 'admin/help#opendata':
-   $output = '';
-   $output .= '<h3>' . t('About') . '</h3>';
-   $output .= '<p>' . t("A helpful entry about your module") . '<p>';
- return $output;
-   }
- }
+ * Implements hook_help().
+ */
+function opendata_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#opendata':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t("A helpful entry about your module") . '<p>';
+      return $output;
+  }
+}

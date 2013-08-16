@@ -11,31 +11,32 @@ include_once 'opendata_view.features.inc';
  */
 function opendata_view_form_opendata_settings_alter(&$form, &$formstate, $formid) {
   $views = views_get_all_views();
-  $myview = $views["opendata"];
+  $myview = $views['opendata'];
   $viewtype = $myview->type;
 
-  // Make sure our submit handler gets called
-  array_unshift($form["#submit"], "opendata_view_save_view_handler");
-  $formstate["opendata_view"] = $myview;
+  // Make sure our submit handler gets called.
+  array_unshift($form['#submit'], 'opendata_view_save_view_handler');
+  $formstate['opendata_view'] = $myview;
 
-  if($viewtype == "Overridden") {
-    // Get the current submit handler
-    $path1 = $myview->display["page"]->display_options["path"];
-    $path2 = $myview->display["page_1"]->display_options["path"];
-  } else {
+  if($viewtype == 'Overridden') {
+    // Get the current submit handler.
+    $path1 = $myview->display['page']->display_options['path'];
+    $path2 = $myview->display['page_1']->display_options['path'];
+  }
+  else {
     $path1 = variable_get('opendata_path_html', 'data');
     $path2 = variable_get('opendata_path_json', 'data.json');
   }
 
-  $form["opendata"]["opendata_path_html"] = array(
-    "#type" => 'textfield',
-    "#title" => t('Path to the human-readable view'),
-    "#default_value" => $path1,
+  $form['opendata']['opendata_path_html'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Path to the human-readable view'),
+    '#default_value' => $path1,
   );
-  $form["opendata"]["opendata_path_json"] = array(
-    "#type" => 'textfield',
-    "#title" => t('Path to the JSON view'),
-    "#default_value" => $path2,
+  $form['opendata']['opendata_path_json'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Path to the JSON view'),
+    '#default_value' => $path2,
   );
 }
 
@@ -43,21 +44,22 @@ function opendata_view_form_opendata_settings_alter(&$form, &$formstate, $formid
  * Processess the view paths in case the view is overridden.
  */
 function opendata_view_save_view_handler($form, $formstate) {
-  // Pull the view from the data structure
-  $view = $formstate["opendata_view"];
-  if($view->type == "Overridden") {
+  // Pull the view from the data structure.
+  $view = $formstate['opendata_view'];
+
+  if ($view->type == 'Overridden') {
     // Get the new paths
-    $htmlpath = $formstate["values"]["opendata_path_html"];
-    $jsonpath = $formstate["values"]["opendata_path_json"];
+    $htmlpath = $formstate['values']['opendata_path_html'];
+    $jsonpath = $formstate['values']['opendata_path_json'];
 
-    // update the view
-    $view->display["page"]->display_options["path"] = $htmlpath;
-    $view->display["page_1"]->display_options["path"] = $jsonpath;
+    // Update the view.
+    $view->display['page']->display_options['path'] = $htmlpath;
+    $view->display['page_1']->display_options['path'] = $jsonpath;
 
-    // save the view
+    // Save the view.
     views_save_view($view);
   }
 
-  // Clear the views cache
+  // Clear the views cache.
   views_invalidate_cache();
 }

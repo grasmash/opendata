@@ -1,1 +1,0 @@
-Implement Views for /data and /data.json pages.
