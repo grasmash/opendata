@@ -35,6 +35,8 @@ function opendata_content_requirements($phase) {
  * Create a node of type opendata_dataset to list the data.json page itself.
  */
 function opendata_content_install() {
+  global $base_url;
+
   $node = new StdClass();
   $node->type = 'opendata_dataset';
   $node->language = LANGUAGE_NONE;
@@ -48,6 +50,14 @@ function opendata_content_install() {
   $node->field_opendata_mbox['und'][0]['value']         = 'firstname.lastname@example.gov';
   $node->field_opendata_identifier['und'][0]['value']   = 'catalog';
   $node->field_opendata_access_level['und'][0]['value'] = 'public';
+
+  $node->field_opendata_distribution['und'][0] = array (
+    'access_url' => $base_url . '/data.json',
+    'format'     => 'json',
+  );
+
+  //set sticky so the catalog will appear at the top of the list  
+  $node->sticky = 1;
 
   node_save($node);
 
