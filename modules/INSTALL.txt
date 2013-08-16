@@ -1,0 +1,19 @@
+Installing Open Data
+==================================
+
+Module Dependencies:
+* Views JSON (submodule of Views Datasource) and NOT Views JSON
+* Email
+* Field Group
+* Features
+
+Note: the naming of the Views Datasource submodule "Views JSON" is problematic.
+Drush cannot automatically find this dependency. You must download the Views
+Datasource module separately before enabling the opendata module.
+
+1) Download all dependencies.
+2) Enable opendata.
+3) Populate the new 'dataset' content type. This may be done manually, or
+   automatically via Feeds or Migrate.
+4) View /data.json and /data.
+5) Making any necessary theming changes to /data.
