@@ -4,7 +4,6 @@ package = Project Open Data
 php = 5.2.4
 dependencies[] = opendata_content
 dependencies[] = views
-dependencies[] = views_json
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[views_view][] = opendata

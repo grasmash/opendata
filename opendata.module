@@ -4,6 +4,26 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function opendata_menu() {
+  $items['admin/config/services/opendata'] = array(
+    'title' => 'OpenData',
+    'description' => 'Access OpenData settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('opendata_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'opendata.admin.inc',
+  );
+  $items['data.json'] = array(
+    'page callback' => 'opendata_data_json',
+    'access arguments' => array('access content'),
+    'file' => 'opendata.pages.inc',
+  );
+  return $items;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function opendata_form_alter(&$form, $form_state, $form_id) {
@@ -23,21 +43,6 @@ function opendata_form_alter(&$form, $form_state, $form_id) {
  */
 function opendata_uuid() {
   return strtolower(sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)));
-}
-
-/**
- * Implements hook_menu().
- */
-function opendata_menu() {
-  $items['admin/config/services/opendata'] = array(
-    'title' => 'OpenData',
-    'description' => 'Access OpenData settings',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('opendata_settings'),
-    'access arguments' => array('administer site configuration'),
-    'file' => 'opendata.admin.inc',
-  );
-  return $items;
 }
 
 /**
