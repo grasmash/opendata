@@ -15,6 +15,7 @@ in the sprint:
 * brockfanning
 * Barrett
 * madmatter23
+* BMDan
 
 Overview
 -----------------

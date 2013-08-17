@@ -5,3 +5,20 @@
  */
 
 include_once 'opendata_content.features.inc';
+
+/**
+ * Implements hook_node_submit().
+ *
+ * On node submit, if the node being submitted is the node created by default
+ * when the opendata_content module is installed, unset the requirment error
+ * indicator.
+ */
+function opendata_content_node_submit($node, $form, &$form_state) {
+  if (!variable_get('opendata_catalog_node_updated', FALSE)) {
+    $catalog_nid = variable_get('opendata_catalog_node', 0);
+    if ($node->nid == $catalog_nid) {
+      //they're updating the catalog node, so unset the warning
+      variable_set('opendata_catalog_node_updated', TRUE);
+    }
+  }
+}
