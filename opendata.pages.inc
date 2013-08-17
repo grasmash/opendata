@@ -53,6 +53,7 @@ function opendata_data_json() {
         }
         $distribution->format = $value['format'];
         $row->distribution[] = $distribution;
+        unset($distribution);
       }
 
       if (!empty($node->field_opendata_web_service[LANGUAGE_NONE][0])) {
@@ -101,6 +102,7 @@ function opendata_data_json() {
       }
 
       $rows[] = $row;
+      unset($row);
     }
 
     drupal_json_output($rows);
