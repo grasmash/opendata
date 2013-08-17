@@ -1,5 +1,5 @@
 name = Project Open Data
-description = @todo
+description = The Project Open Data module and its submodules help Federal agencies fulfill the requirements of the US Government Policy on Open Data (http://project-open-data.github.io/policy-memo/).
 core = 7.x
 package = Project Open Data
 dependencies[] = opendata_content
