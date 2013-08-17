@@ -45,15 +45,17 @@ function opendata_data_json() {
 
       // Build distributions.
       $row->distribution = array();
-      foreach ($node->field_opendata_distribution[LANGUAGE_NONE] as $delta => $value) {
-        $distribution = new stdClass();
-        $distribution->accessURL = $value['access_url'];
-        if (!empty($value['size'])) {
-          $distribution->size = $value['size'];
+      if (isset($node->field_opendata_distribution[LANGUAGE_NONE])) {
+        foreach ($node->field_opendata_distribution[LANGUAGE_NONE] as $delta => $value) {
+          $distribution = new stdClass();
+          $distribution->accessURL = $value['access_url'];
+          if (!empty($value['size'])) {
+            $distribution->size = $value['size'];
+          }
+          $distribution->format = $value['format'];
+          $row->distribution[] = $distribution;
+          unset($distribution);
         }
-        $distribution->format = $value['format'];
-        $row->distribution[] = $distribution;
-        unset($distribution);
       }
 
       if (!empty($node->field_opendata_web_service[LANGUAGE_NONE][0]['value'])) {
