@@ -23,7 +23,6 @@ function opendata_menu() {
   return $items;
 }
 
-
 /**
  * Implements hook_form_alter().
  */
