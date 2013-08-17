@@ -31,6 +31,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['cache']['output_lifespan'] = '3600';
   $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -134,13 +135,6 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_web_service']['settings'] = array(
     'emphasis' => 0,
   );
-  /* Field: Content: Download URL (field_opendata_distribution:delta) */
-  $handler->display->display_options['fields']['delta']['id'] = 'delta';
-  $handler->display->display_options['fields']['delta']['table'] = 'field_data_field_opendata_distribution';
-  $handler->display->display_options['fields']['delta']['field'] = 'delta';
-  $handler->display->display_options['fields']['delta']['label'] = 'Format';
-  $handler->display->display_options['fields']['delta']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delta']['separator'] = '';
   /* Field: Content: License */
   $handler->display->display_options['fields']['field_opendata_license']['id'] = 'field_opendata_license';
   $handler->display->display_options['fields']['field_opendata_license']['table'] = 'field_data_field_opendata_license';
@@ -247,6 +241,11 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_feed']['settings'] = array(
     'emphasis' => 0,
   );
+  /* Sort criterion: Content: Sticky */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'node';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
