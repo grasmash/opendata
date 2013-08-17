@@ -268,7 +268,7 @@ function opendata_view_views_default_views() {
 
   /* Display: HTML */
   $handler = $view->new_display('page', 'HTML', 'page');
-  $handler->display->display_options['path'] = variable_get('opendata_path_html', 'data');
+  $handler->display->display_options['path'] = 'data';
 
   /* Display: JSON */
   $handler = $view->new_display('page', 'JSON', 'page_1');
@@ -283,7 +283,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['style_options']['remove_newlines'] = 0;
   $handler->display->display_options['style_options']['jsonp_prefix'] = '';
   $handler->display->display_options['style_options']['using_views_api_mode'] = 0;
-  $handler->display->display_options['style_options']['object_arrays'] = 1;
+  $handler->display->display_options['style_options']['object_arrays'] = 0;
   $handler->display->display_options['style_options']['numeric_strings'] = 0;
   $handler->display->display_options['style_options']['bigint_string'] = 0;
   $handler->display->display_options['style_options']['pretty_print'] = 0;
@@ -403,13 +403,6 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_web_service']['settings'] = array(
     'emphasis' => 0,
   );
-  /* Field: Content: Download URL (field_opendata_distribution:delta) */
-  $handler->display->display_options['fields']['delta']['id'] = 'delta';
-  $handler->display->display_options['fields']['delta']['table'] = 'field_data_field_opendata_distribution';
-  $handler->display->display_options['fields']['delta']['field'] = 'delta';
-  $handler->display->display_options['fields']['delta']['label'] = 'format';
-  $handler->display->display_options['fields']['delta']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['delta']['separator'] = '';
   /* Field: Content: License */
   $handler->display->display_options['fields']['field_opendata_license']['id'] = 'field_opendata_license';
   $handler->display->display_options['fields']['field_opendata_license']['table'] = 'field_data_field_opendata_license';
@@ -527,7 +520,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_feed']['settings'] = array(
     'emphasis' => 0,
   );
-  $handler->display->display_options['path'] = variable_get('opendata_path_json', 'data.json');
+  $handler->display->display_options['path'] = 'data.json';
   $export['opendata'] = $view;
 
   return $export;
