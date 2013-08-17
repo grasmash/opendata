@@ -39,8 +39,8 @@ function opendata_data_json() {
       $row->accessLevel = $node->field_opendata_access_level[LANGUAGE_NONE][0]['value'];
 
       // Common Core (Required if Applicable) fields.
-      if (!empty($node->field_opendata_data_dictionary[LANGUAGE_NONE]['value'])) {
-        $row->dataDictionary = $node->field_opendata_data_dictionary[LANGUAGE_NONE]['value'];
+      if (!empty($node->field_opendata_data_dictionary[LANGUAGE_NONE][0]['value'])) {
+        $row->dataDictionary = $node->field_opendata_data_dictionary[LANGUAGE_NONE][0]['value'];
       }
 
       // Build distributions.
@@ -56,49 +56,49 @@ function opendata_data_json() {
         unset($distribution);
       }
 
-      if (!empty($node->field_opendata_web_service[LANGUAGE_NONE][0])) {
-        $row->webService = $node->field_opendata_web_service[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_web_service[LANGUAGE_NONE][0]['value'])) {
+        $row->webService = $node->field_opendata_web_service[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_license[LANGUAGE_NONE][0])) {
-        $row->license = $node->field_opendata_license[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_license[LANGUAGE_NONE][0]['value'])) {
+        $row->license = $node->field_opendata_license[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_spatial[LANGUAGE_NONE][0])) {
-        $row->spatial = $node->field_opendata_spatial[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_spatial[LANGUAGE_NONE][0]['value'])) {
+        $row->spatial = $node->field_opendata_spatial[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_temporal[LANGUAGE_NONE][0])) {
-        $row->temporal = $node->field_opendata_temporal[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_temporal[LANGUAGE_NONE][0]['value'])) {
+        $row->temporal = $node->field_opendata_temporal[LANGUAGE_NONE][0]['value'];
       }
 
       // Extended fields.
-      if (!empty($node->field_opendata_release_date[LANGUAGE_NONE][0])) {
-        $row->issued = $node->field_opendata_release_date[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_release_date[LANGUAGE_NONE][0]['value'])) {
+        $row->issued = $node->field_opendata_release_date[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_frequency[LANGUAGE_NONE][0])) {
-        $row->accrualPeriodicity = $node->field_opendata_frequency[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_frequency[LANGUAGE_NONE][0]['value'])) {
+        $row->accrualPeriodicity = $node->field_opendata_frequency[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_language[LANGUAGE_NONE][0])) {
-        $row->language = $node->field_opendata_language[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_language[LANGUAGE_NONE][0]['value'])) {
+        $row->language = $node->field_opendata_language[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_granularity[LANGUAGE_NONE][0])) {
-        $row->granularity = $node->field_opendata_granularity[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_granularity[LANGUAGE_NONE][0]['value'])) {
+        $row->granularity = $node->field_opendata_granularity[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_data_quality[LANGUAGE_NONE][0])) {
-        $row->boolean = $node->field_opendata_data_quality[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_data_quality[LANGUAGE_NONE][0]['value'])) {
+        $row->boolean = $node->field_opendata_data_quality[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_theme[LANGUAGE_NONE][0])) {
-        $row->theme = $node->field_opendata_theme[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_theme[LANGUAGE_NONE][0]['value'])) {
+        $row->theme = $node->field_opendata_theme[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_references[LANGUAGE_NONE][0])) {
-        $row->references = $node->field_opendata_references[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_references[LANGUAGE_NONE][0]['value'])) {
+        $row->references = $node->field_opendata_references[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_size[LANGUAGE_NONE][0])) {
-        $row->size = $node->field_opendata_size[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_size[LANGUAGE_NONE][0]['value'])) {
+        $row->size = $node->field_opendata_size[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_landing_page[LANGUAGE_NONE][0])) {
-        $row->landingPage = $node->field_opendata_landing_page[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_landing_page[LANGUAGE_NONE][0]['value'])) {
+        $row->landingPage = $node->field_opendata_landing_page[LANGUAGE_NONE][0]['value'];
       }
-      if (!empty($node->field_opendata_feed[LANGUAGE_NONE][0])) {
-        $row->feed = $node->field_opendata_feed[LANGUAGE_NONE][0];
+      if (!empty($node->field_opendata_feed[LANGUAGE_NONE][0]['value'])) {
+        $row->feed = $node->field_opendata_feed[LANGUAGE_NONE][0]['value'];
       }
 
       $rows[] = $row;
