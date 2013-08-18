@@ -14,6 +14,17 @@ include_once 'opendata_content.features.inc';
 function opendata_content_node_validate($node, $form, &$form_state) {
   if ($node->type == 'opendata_dataset') {
     //check for uniqueness of identifier field
+    $identifier = field_get_items('node', $node, 'field_opendata_identifier', $node->language);
+
+    $query = new EntityFieldQuery();
+    $query->fieldCondition('field_opendata_identifier', 'value', $identifier[0]['value'], '=');
+
+    $result = $query->execute();
+
+    if ($result) {
+      form_set_error('field_opendata_identifier', 'The Unique Identifier supplied is already in use.');
+    }
+
     //check that modified is YYYY-MM-DD
 
     //if present, verify dataDictionary is a URL
