@@ -7,13 +7,35 @@
 include_once 'opendata_content.features.inc';
 
 /**
- * Implements hook_validate().
+ * Implements hook_node_validate().
  *
- * 
+ * @todo: check for uniqueness of identifier field and valid date format
  */
 function opendata_content_node_validate($node, $form, &$form_state) {
   if ($node->type == 'opendata_dataset') {
+    //check for uniqueness of identifier field
+    //check that modified is YYYY-MM-DD
+    
+    //if present, verify dataDictionary is a URL
+    $data_dictionary = field_get_items('node', $node, 'field_opendata_data_dictionary', $node->language);
+    if (!empty($data_dictionary[0]['value'])) {
+      if (!valid_url($data_dictionary[0]['value'], TRUE)) {
+        form_set_error('field_opendata_data_dictionary', 'The provided Data Dictionary URL is not valid');
+      } 
+    }
 
+    //if present, verify accessURL and webService is a URL
+    $distributions = field_get_items('node', $node, 'field_opendata_distribution', $node->language);
+    foreach ($distributions as $index => $distribution) {
+      if ($index === 'add_more') {
+        continue;
+      }
+      foreach (array('access_url', 'web_service') as $field) {
+        if (!empty($distribution[$field]) && !valid_url($distribution[$field], TRUE)) {
+          form_set_error("field_opendata_distribution", "The Download URL {$distribution[$field]} is not valid.");
+        }
+      }
+    }
   }
 }
 
@@ -46,7 +68,6 @@ function opendata_content_form_alter(&$form, $form_state, $form_id) {
       $form['field_opendata_identifier']['und'][0]['value']['#default_value'] = opendata_content_uuid();
     }
   }
-dsm($form['#validate']);
 }
 
 /**
