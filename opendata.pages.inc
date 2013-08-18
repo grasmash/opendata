@@ -48,7 +48,7 @@ function opendata_get_datasets() {
  * @return array
  *   An array of objects formatted as per Open Data schema specifications.
  */
-function opendata_build_row($nodes) {
+function opendata_build_rows($nodes) {
 
   foreach ($nodes as $node) {
 
@@ -69,19 +69,7 @@ function opendata_build_row($nodes) {
     $row->dataDictionary = opendata_get_field_value($node, 'field_opendata_data_dictionary', 'value');
 
     // Build distributions.
-    $row->distribution = array();
-    if (isset($node->field_opendata_distribution[LANGUAGE_NONE])) {
-      foreach ($node->field_opendata_distribution[LANGUAGE_NONE] as $delta => $value) {
-        $distribution = new stdClass();
-        $distribution->accessURL = $value['access_url'];
-        if (!empty($value['size'])) {
-          $distribution->size = $value['size'];
-        }
-        $distribution->format = $value['format'];
-        $row->distribution[] = $distribution;
-        unset($distribution);
-      }
-    }
+    $row->distribution = opendata_build_distributions($node);
 
     $row->webService = opendata_get_field_value($node, 'field_opendata_web_service', 'value');
     $row->license = opendata_get_field_value($node, 'field_opendata_license', 'value');
@@ -124,4 +112,32 @@ function opendata_get_field_value($node, $field_name, $column_name) {
   if (!empty($node->{$field_name}[LANGUAGE_NONE][0][$column_name])) {
     return $node->{$field_name}[LANGUAGE_NONE][0][$column_name];
   }
+}
+
+/**
+ * Build the distributions property for a JSON row.
+ *
+ * @param object $node
+ *   An opendata_dataset node.
+ *
+ * @return array
+ *   An array of distribution objects.
+ */
+function opendata_build_distributions($node) {
+  $distributions = array();
+
+  if (isset($node->field_opendata_distribution[LANGUAGE_NONE])) {
+    foreach ($node->field_opendata_distribution[LANGUAGE_NONE] as $delta => $value) {
+      $distribution = new stdClass();
+      $distribution->accessURL = $value['access_url'];
+      if (!empty($value['size'])) {
+        $distribution->size = $value['size'];
+      }
+      $distribution->format = $value['format'];
+      $distributions[] = $distribution;
+      unset($distribution);
+    }
+  }
+
+  return $distributions;
 }
