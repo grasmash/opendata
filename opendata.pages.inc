@@ -10,6 +10,19 @@
  */
 function opendata_data_json() {
 
+  $nodes = opendata_get_datasets();
+  $rows = opendata_build_rows($nodes);
+
+  drupal_json_output($rows);
+}
+
+/**
+ * Retrieves public, published dataset nodes.
+ *
+ * @return array
+ *   An array of dataset nodes.
+ */
+function opendata_get_datasets() {
   $query = new EntityFieldQuery();
 
   $query->entityCondition('entity_type', 'node')
@@ -23,89 +36,92 @@ function opendata_data_json() {
     $nids = array_keys($entities['node']);
     $nodes = node_load_multiple($nids);
 
-    foreach ($nodes as $node) {
+  return $nodes;
+}
 
-      $row = new stdClass();
+/**
+ * Build PHP array and object structure in preparation for JSON output.
+ *
+ * @param array $nodes
+ *   An array of opendata_dataset nodes.
+ *
+ * @return array
+ *   An array of objects formatted as per Open Data schema specifications.
+ */
+function opendata_build_row($nodes) {
 
-      // Common Core fields.
-      $row->title = $node->title;
-      $row->description = $node->field_opendata_description[LANGUAGE_NONE][0]['value'];
-      $row->keyword = $node->field_opendata_keyword[LANGUAGE_NONE][0]['value'];
-      $row->modified = $node->field_opendata_modified[LANGUAGE_NONE][0]['value'];
-      $row->publisher = $node->field_opendata_publisher[LANGUAGE_NONE][0]['value'];
-      $row->person = $node->field_opendata_person[LANGUAGE_NONE][0]['value'];
-      $row->mbox = $node->field_opendata_mbox[LANGUAGE_NONE][0]['email'];
-      $row->identifier = $node->field_opendata_identifier[LANGUAGE_NONE][0]['value'];
-      $row->accessLevel = $node->field_opendata_access_level[LANGUAGE_NONE][0]['value'];
+  foreach ($nodes as $node) {
 
-      // Common Core (Required if Applicable) fields.
-      if (!empty($node->field_opendata_data_dictionary[LANGUAGE_NONE][0]['value'])) {
-        $row->dataDictionary = $node->field_opendata_data_dictionary[LANGUAGE_NONE][0]['value'];
-      }
+    $row = new stdClass();
 
-      // Build distributions.
-      $row->distribution = array();
-      if (isset($node->field_opendata_distribution[LANGUAGE_NONE])) {
-        foreach ($node->field_opendata_distribution[LANGUAGE_NONE] as $delta => $value) {
-          $distribution = new stdClass();
-          $distribution->accessURL = $value['access_url'];
-          if (!empty($value['size'])) {
-            $distribution->size = $value['size'];
-          }
-          $distribution->format = $value['format'];
-          $row->distribution[] = $distribution;
-          unset($distribution);
+    // Common Core fields. These are required, so we don't check for empty.
+    $row->title = $node->title;
+    $row->description = opendata_get_field_value($node, 'field_opendata_description', 'value');
+    $row->keyword = opendata_get_field_value($node, 'field_opendata_keyword', 'value');
+    $row->modified = opendata_get_field_value($node, 'field_opendata_modified', 'value');
+    $row->publisher = opendata_get_field_value($node, 'field_opendata_publisher', 'value');
+    $row->person = opendata_get_field_value($node, 'field_opendata_person', 'value');
+    $row->mbox = opendata_get_field_value($node, 'field_opendata_mbox', 'email');
+    $row->identifier = opendata_get_field_value($node, 'field_opendata_identifier', 'value');
+    $row->accessLevel = opendata_get_field_value($node, 'field_opendata_access_level', 'value');
+
+    // Common Core (Required if Applicable) fields.
+    $row->dataDictionary = opendata_get_field_value($node, 'field_opendata_data_dictionary', 'value');
+
+    // Build distributions.
+    $row->distribution = array();
+    if (isset($node->field_opendata_distribution[LANGUAGE_NONE])) {
+      foreach ($node->field_opendata_distribution[LANGUAGE_NONE] as $delta => $value) {
+        $distribution = new stdClass();
+        $distribution->accessURL = $value['access_url'];
+        if (!empty($value['size'])) {
+          $distribution->size = $value['size'];
         }
+        $distribution->format = $value['format'];
+        $row->distribution[] = $distribution;
+        unset($distribution);
       }
-
-      if (!empty($node->field_opendata_web_service[LANGUAGE_NONE][0]['value'])) {
-        $row->webService = $node->field_opendata_web_service[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_license[LANGUAGE_NONE][0]['value'])) {
-        $row->license = $node->field_opendata_license[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_spatial[LANGUAGE_NONE][0]['value'])) {
-        $row->spatial = $node->field_opendata_spatial[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_temporal[LANGUAGE_NONE][0]['value'])) {
-        $row->temporal = $node->field_opendata_temporal[LANGUAGE_NONE][0]['value'];
-      }
-
-      // Extended fields.
-      if (!empty($node->field_opendata_release_date[LANGUAGE_NONE][0]['value'])) {
-        $row->issued = $node->field_opendata_release_date[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_frequency[LANGUAGE_NONE][0]['value'])) {
-        $row->accrualPeriodicity = $node->field_opendata_frequency[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_language[LANGUAGE_NONE][0]['value'])) {
-        $row->language = $node->field_opendata_language[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_granularity[LANGUAGE_NONE][0]['value'])) {
-        $row->granularity = $node->field_opendata_granularity[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_data_quality[LANGUAGE_NONE][0]['value'])) {
-        $row->boolean = $node->field_opendata_data_quality[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_theme[LANGUAGE_NONE][0]['value'])) {
-        $row->theme = $node->field_opendata_theme[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_references[LANGUAGE_NONE][0]['value'])) {
-        $row->references = $node->field_opendata_references[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_size[LANGUAGE_NONE][0]['value'])) {
-        $row->size = $node->field_opendata_size[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_landing_page[LANGUAGE_NONE][0]['value'])) {
-        $row->landingPage = $node->field_opendata_landing_page[LANGUAGE_NONE][0]['value'];
-      }
-      if (!empty($node->field_opendata_feed[LANGUAGE_NONE][0]['value'])) {
-        $row->feed = $node->field_opendata_feed[LANGUAGE_NONE][0]['value'];
-      }
-
-      $rows[] = $row;
-      unset($row);
     }
 
-    drupal_json_output($rows);
+    $row->webService = opendata_get_field_value($node, 'field_opendata_web_service', 'value');
+    $row->license = opendata_get_field_value($node, 'field_opendata_license', 'value');
+    $row->spatial = opendata_get_field_value($node, 'field_opendata_spatial', 'value');
+    $row->temporal = opendata_get_field_value($node, 'field_opendata_temporal', 'value');
+
+    // Extended fields.
+    $row->issued = opendata_get_field_value($node, 'field_opendata_release_date', 'value');
+    $row->accrualPeriodicity = opendata_get_field_value($node, 'field_opendata_frequency', 'value');
+    $row->language = opendata_get_field_value($node, 'field_opendata_language', 'value');
+    $row->granularity = opendata_get_field_value($node, 'field_opendata_granularity', 'value');
+    $row->boolean = opendata_get_field_value($node, 'field_opendata_data_quality', 'value');
+    $row->theme = opendata_get_field_value($node, 'field_opendata_theme', 'value');
+    $row->references = opendata_get_field_value($node, 'field_opendata_references', 'value');
+    $row->size = opendata_get_field_value($node, 'field_opendata_size', 'value');
+    $row->landingPage = opendata_get_field_value($node, 'field_opendata_landing_page', 'value');
+    $row->feed = opendata_get_field_value($node, 'field_opendata_feed', 'value');
+
+    $rows[] = $row;
+    unset($row);
+  }
+
+  return $rows;
+}
+
+/**
+ * Sets a JSON row property given a node field name.
+ *
+ * @param object $node
+ *   The node containing the field value.
+ *
+ * @param string $field_name
+ *   The machine name of the field.
+ *
+ * @param string $column_name
+ *   The column containing the primary value for a given field.
+ *
+ */
+function opendata_get_field_value($node, $field_name, $column_name) {
+  if (!empty($node->{$field_name}[LANGUAGE_NONE][0][$column_name])) {
+    return $node->{$field_name}[LANGUAGE_NONE][0][$column_name];
+  }
 }

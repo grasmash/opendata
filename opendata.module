@@ -24,15 +24,6 @@ function opendata_menu() {
 }
 
 /**
- * Implements hook_views_post_render().
- */
-function opendata_views_post_render(&$view, &$output, &$cache) {
-  if ($view->name == 'opendata' && $view->current_display == 'page' && variable_get('opendata_theming', TRUE)) {
-      drupal_add_css(drupal_get_path('module', 'opendata') . '/opendata.css');
-  }
-}
-
-/**
  * Implements hook_help().
  */
 function opendata_help($path, $arg) {
