@@ -7,7 +7,9 @@
 
 /**
  * Page callback for admninistrative form.
- * @return [type] [description]
+ *
+ * @return array
+ *   A drupal form array.
  */
 function opendata_settings() {
   $form = array();

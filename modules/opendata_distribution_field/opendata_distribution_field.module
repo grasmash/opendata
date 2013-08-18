@@ -185,7 +185,7 @@ function opendata_distribution_field_field_formatter_view($entity_type, $entity,
         '#items' => array(
           'Download URL: ' . l($access_url, $access_url),
           'Format: ' . $format,
-          'Size : ' . $size,
+          'Size: ' . $size,
         ),
       );
     }

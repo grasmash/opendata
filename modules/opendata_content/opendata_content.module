@@ -14,10 +14,10 @@ include_once 'opendata_content.features.inc';
  * indicator.
  */
 function opendata_content_node_submit($node, $form, &$form_state) {
-  if (!variable_get('opendata_catalog_node_updated', FALSE)) {
+  if ($node->type == 'opendata_dataset' && !variable_get('opendata_catalog_node_updated', FALSE)) {
     $catalog_nid = variable_get('opendata_catalog_node', 0);
     if ($node->nid == $catalog_nid) {
-      //they're updating the catalog node, so unset the warning
+      // They're updating the catalog node, so unset the warning.
       variable_set('opendata_catalog_node_updated', TRUE);
     }
   }
@@ -27,7 +27,7 @@ function opendata_content_node_submit($node, $form, &$form_state) {
  * Implements hook_form_alter().
  */
 function opendata_content_form_alter(&$form, $form_state, $form_id) {
-  if ($form_id == 'opendata_dataset_node_form' ) {
+  if ($form_id == 'opendata_dataset_node_form') {
     if (empty($form['field_opendata_identifier'][LANGUAGE_NONE][0]['value']['#default_value'])) {
       // Code blatantly stolen from Com::generate.
       $form['field_opendata_identifier']['und'][0]['value']['#default_value'] = opendata_content_uuid();

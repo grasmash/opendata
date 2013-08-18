@@ -44,7 +44,7 @@ function opendata_content_install() {
   $node->title = 'Data Catalog';
   $node->field_opendata_description['und'][0]['value']  = 'Data Catalog';
   $node->field_opendata_keyword['und'][0]['value']      = 'catalog';
-  $node->field_opendata_modified['und'][0]['value']     = date('Y-m-d'); 
+  $node->field_opendata_modified['und'][0]['value']     = date('Y-m-d');
   $node->field_opendata_publisher['und'][0]['value']    = 'Agency.gov';
   $node->field_opendata_person['und'][0]['value']       = 'Lastname, Firstname';
   $node->field_opendata_mbox['und'][0]['email']         = 'firstname.lastname@example.gov';
@@ -56,7 +56,7 @@ function opendata_content_install() {
     'format'     => 'json',
   );
 
-  //set sticky so the catalog will appear at the top of the list  
+  // Set sticky so the catalog will appear at the top of the list.
   $node->sticky = 1;
 
   node_save($node);
