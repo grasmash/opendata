@@ -7,6 +7,17 @@
 include_once 'opendata_content.features.inc';
 
 /**
+ * Implements hook_validate().
+ *
+ * 
+ */
+function opendata_content_node_validate($node, $form, &$form_state) {
+  if ($node->type == 'opendata_dataset') {
+
+  }
+}
+
+/**
  * Implements hook_node_submit().
  *
  * On node submit, if the node being submitted is the node created by default
@@ -14,11 +25,13 @@ include_once 'opendata_content.features.inc';
  * indicator.
  */
 function opendata_content_node_submit($node, $form, &$form_state) {
-  if (!variable_get('opendata_catalog_node_updated', FALSE)) {
-    $catalog_nid = variable_get('opendata_catalog_node', 0);
-    if ($node->nid == $catalog_nid) {
-      //they're updating the catalog node, so unset the warning
-      variable_set('opendata_catalog_node_updated', TRUE);
+  if ($note->type == 'opendata_dataset') {
+    if (!variable_get('opendata_catalog_node_updated', FALSE)) {
+      $catalog_nid = variable_get('opendata_catalog_node', 0);
+      if ($node->nid == $catalog_nid) {
+        //they're updating the catalog node, so unset the warning
+        variable_set('opendata_catalog_node_updated', TRUE);
+      }
     }
   }
 }
@@ -33,6 +46,7 @@ function opendata_content_form_alter(&$form, $form_state, $form_id) {
       $form['field_opendata_identifier']['und'][0]['value']['#default_value'] = opendata_content_uuid();
     }
   }
+dsm($form['#validate']);
 }
 
 /**
