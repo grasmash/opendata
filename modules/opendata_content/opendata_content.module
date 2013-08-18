@@ -7,6 +7,39 @@
 include_once 'opendata_content.features.inc';
 
 /**
+ * Implements hook_node_validate().
+ *
+ * @todo: check for uniqueness of identifier field and valid date format
+ */
+function opendata_content_node_validate($node, $form, &$form_state) {
+  if ($node->type == 'opendata_dataset') {
+    //check for uniqueness of identifier field
+    //check that modified is YYYY-MM-DD
+
+    //if present, verify dataDictionary is a URL
+    $data_dictionary = field_get_items('node', $node, 'field_opendata_data_dictionary', $node->language);
+    if (!empty($data_dictionary[0]['value'])) {
+      if (!valid_url($data_dictionary[0]['value'], TRUE)) {
+        form_set_error('field_opendata_data_dictionary', 'The provided Data Dictionary URL is not valid');
+      }
+    }
+
+    //if present, verify accessURL and webService is a URL
+    $distributions = field_get_items('node', $node, 'field_opendata_distribution', $node->language);
+    foreach ($distributions as $index => $distribution) {
+      if ($index === 'add_more') {
+        continue;
+      }
+      foreach (array('access_url', 'web_service') as $field) {
+        if (!empty($distribution[$field]) && !valid_url($distribution[$field], TRUE)) {
+          form_set_error("field_opendata_distribution", "The Download URL {$distribution[$field]} is not valid.");
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_node_submit().
  *
  * On node submit, if the node being submitted is the node created by default
@@ -14,11 +47,14 @@ include_once 'opendata_content.features.inc';
  * indicator.
  */
 function opendata_content_node_submit($node, $form, &$form_state) {
-  if ($node->type == 'opendata_dataset' && !variable_get('opendata_catalog_node_updated', FALSE)) {
-    $catalog_nid = variable_get('opendata_catalog_node', 0);
-    if ($node->nid == $catalog_nid) {
-      // They're updating the catalog node, so unset the warning.
-      variable_set('opendata_catalog_node_updated', TRUE);
+
+  if ($note->type == 'opendata_dataset') {
+    if (!variable_get('opendata_catalog_node_updated', FALSE)) {
+      $catalog_nid = variable_get('opendata_catalog_node', 0);
+      if ($node->nid == $catalog_nid) {
+        // They're updating the catalog node, so unset the warning.
+        variable_set('opendata_catalog_node_updated', TRUE);
+      }
     }
   }
 }
