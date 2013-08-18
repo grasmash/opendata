@@ -13,6 +13,7 @@ include_once 'opendata_content.features.inc';
  */
 function opendata_content_node_validate($node, $form, &$form_state) {
   if ($node->type == 'opendata_dataset') {
+    
     //check for uniqueness of identifier field
     $identifier = field_get_items('node', $node, 'field_opendata_identifier', $node->language);
 
@@ -27,7 +28,7 @@ function opendata_content_node_validate($node, $form, &$form_state) {
 
     //check that modified is YYYY-MM-DD
 
-    //if present, verify dataDictionary is a URL
+    // If present, verify dataDictionary is a URL.
     $data_dictionary = field_get_items('node', $node, 'field_opendata_data_dictionary', $node->language);
     if (!empty($data_dictionary[0]['value'])) {
       if (!valid_url($data_dictionary[0]['value'], TRUE)) {
@@ -35,7 +36,7 @@ function opendata_content_node_validate($node, $form, &$form_state) {
       }
     }
 
-    //if present, verify accessURL and webService is a URL
+    // If present, verify accessURL and webService is a URL.
     $distributions = field_get_items('node', $node, 'field_opendata_distribution', $node->language);
     foreach ($distributions as $index => $distribution) {
       if ($index === 'add_more') {
@@ -58,7 +59,6 @@ function opendata_content_node_validate($node, $form, &$form_state) {
  * indicator.
  */
 function opendata_content_node_submit($node, $form, &$form_state) {
-
   if ($note->type == 'opendata_dataset') {
     if (!variable_get('opendata_catalog_node_updated', FALSE)) {
       $catalog_nid = variable_get('opendata_catalog_node', 0);
