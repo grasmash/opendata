@@ -60,10 +60,10 @@ function opendata_content_field_group_info() {
       1 => 'field_opendata_description',
       2 => 'field_opendata_identifier',
       3 => 'field_opendata_keyword',
-      4 => 'field_opendata_modified',
-      5 => 'field_opendata_person',
-      6 => 'field_opendata_publisher',
-      7 => 'field_opendata_mbox',
+      4 => 'field_opendata_mbox',
+      5 => 'field_opendata_modified',
+      6 => 'field_opendata_person',
+      7 => 'field_opendata_publisher',
       8 => 'title',
     ),
     'format_type' => 'fieldset',
@@ -74,7 +74,7 @@ function opendata_content_field_group_info() {
         'classes' => '',
         'description' => '',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_opendata_core|node|opendata_dataset|form'] = $field_group;
