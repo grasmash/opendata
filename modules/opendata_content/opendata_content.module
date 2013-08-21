@@ -73,7 +73,7 @@ function opendata_content_node_validate($node, $form, &$form_state) {
  * indicator.
  */
 function opendata_content_node_submit($node, $form, &$form_state) {
-  if ($note->type == 'opendata_dataset') {
+  if ($node->type == 'opendata_dataset') {
     if (!variable_get('opendata_catalog_node_updated', FALSE)) {
       $catalog_nid = variable_get('opendata_catalog_node', 0);
       if ($node->nid == $catalog_nid) {
