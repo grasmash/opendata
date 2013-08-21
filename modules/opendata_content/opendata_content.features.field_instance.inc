@@ -175,7 +175,7 @@ function opendata_content_field_default_field_instances() {
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'URL providing direct access to the downloadable distribution of a dataset and the file format (e.g. csv, xls, json, etc.) or API type of the distribution.',
+    'description' => 'Describes each manner through which the data is made available, including URL providing direct access to the downloadable distribution of a dataset and the file format (e.g. csv, xls, json, etc.) or API type of the distribution.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -193,7 +193,7 @@ function opendata_content_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_opendata_distribution',
-    'label' => 'Download URL',
+    'label' => 'Distributions',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1017,8 +1017,9 @@ function opendata_content_field_default_field_instances() {
   t('Data Dictionary');
   t('Data Quality');
   t('Date of formal issuance. YYYY-MM-DD.');
+  t('Describes each manner through which the data is made available, including URL providing direct access to the downloadable distribution of a dataset and the file format (e.g. csv, xls, json, etc.) or API type of the distribution.');
   t('Description');
-  t('Download URL');
+  t('Distributions');
   t('Endpoint');
   t('Endpoint of web service to access dataset.');
   t('Frequency');
@@ -1051,7 +1052,6 @@ function opendata_content_field_default_field_instances() {
   t('The range of temporal applicability of a dataset (i.e., a start and end date of applicability for the data). This field should contain an interval of time defined by start and end dates. Dates should be formatted as pairs of {start date, end date} in the format YYYY-MM-DD hh:mm:ss using 24 hour clock time notation (e.g., 2011-02-14 12:00:00, 2013-02-14 12:00:00).');
   t('The size of the downloadable dataset.');
   t('URL for an RSS feed that provides access to the dataset.');
-  t('URL providing direct access to the downloadable distribution of a dataset and the file format (e.g. csv, xls, json, etc.) or API type of the distribution.');
   t('URL to the System of Records related to this dataset.');
   t('URL to the data dictionary for the dataset or API. Note that documentation other than a Data Dictionary can be referenced using Related Documents as shown in the expanded fields.');
   t('Unique Identifier');

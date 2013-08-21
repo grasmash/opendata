@@ -8,13 +8,43 @@ include_once 'opendata_content.features.inc';
 
 /**
  * Implements hook_node_validate().
- *
- * @todo: check for uniqueness of identifier field and valid date format
  */
 function opendata_content_node_validate($node, $form, &$form_state) {
   if ($node->type == 'opendata_dataset') {
+    
     // Check for uniqueness of identifier field.
+    $identifier = field_get_items('node', $node, 'field_opendata_identifier', $node->language);
+
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'opendata_dataset')
+      ->fieldCondition('field_opendata_identifier', 'value', $identifier[0]['value'], '=');
+
+    $result = $query->execute();
+    
+    if (isset($result['node'])) {
+      if (array_keys($result['node']) != array($node->nid)) {     
+        form_set_error('field_opendata_identifier', 'The Unique Identifier supplied is already in use.');
+      }
+    }
+
     // Check that modified is YYYY-MM-DD.
+    $date_error = FALSE;
+    $date_pattern = '/^\d{4}-\d{2}-\d{2}$/';
+    $modified = field_get_items('node', $node, 'field_opendata_modified', $node->language);
+    if (!preg_match($date_pattern, $modified[0]['value'])) {
+      $date_error = TRUE;
+    }
+    else {
+      list($year, $month, $day) = explode('-', $modified[0]['value']);
+      if (!checkdate($month, $day, $year)) {
+        $date_error = TRUE;
+      }
+    }
+
+    if ($date_error) {
+      form_set_error('field_opendata_modified', "The provided Last Update value is not a valid date or is not in YYYY-MM-DD format");
+    }
 
     // If present, verify dataDictionary is a URL.
     $data_dictionary = field_get_items('node', $node, 'field_opendata_data_dictionary', $node->language);
@@ -47,7 +77,7 @@ function opendata_content_node_validate($node, $form, &$form_state) {
  * indicator.
  */
 function opendata_content_node_submit($node, $form, &$form_state) {
-  if ($note->type == 'opendata_dataset') {
+  if ($node->type == 'opendata_dataset') {
     if (!variable_get('opendata_catalog_node_updated', FALSE)) {
       $catalog_nid = variable_get('opendata_catalog_node', 0);
       if ($node->nid == $catalog_nid) {
