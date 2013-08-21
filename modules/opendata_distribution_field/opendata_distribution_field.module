@@ -80,8 +80,16 @@ function opendata_distribution_field_settings_form($field, $instance, $has_data)
 function opendata_distribution_field_field_validate($obj_type, $object, $field, $instance, $langcode, &$items, &$errors) {
   if ($field['type'] == 'opendata_distribution') {
     foreach ($items as $delta => $item) {
-      // Test URL.
       if (!empty($item['access_url'])) {
+
+        // Test URL.
+        if (!valid_url($item['access_url'], TRUE)) {
+          $errors[$field['field_name']]['und'][$delta][] = array(
+            'error' => 'opendata_distribution_access_url',
+            'message' => t('The URL !url is not valid', array('!url' => $item['access_url'])),
+          );
+        }
+
         // If URL isn't empty, we need a format.
         if (empty($item['format'])) {
           $errors[$field['field_name']][$langcode][$delta][] = array(
