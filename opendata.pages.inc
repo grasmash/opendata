@@ -28,6 +28,7 @@ function opendata_get_datasets() {
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'opendata_dataset')
     ->propertyCondition('status', 1)
+    ->propertyOrderBy('sticky', 'DESC')
     ->propertyOrderBy('created', 'DESC')
     ->fieldCondition('field_opendata_access_level', 'value', 'public', '=')
     // Run the query as user 1.
