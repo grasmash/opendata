@@ -3,18 +3,19 @@
 /**
  * Implements hook_requirements();
  **/
-function opendata_requirements($phase = 'install') {
+function opendata_view_requirements($phase) {
   $requirements = array();
   $t = get_t();
-
   // If the path /data or data.json exists, refuse to install otherwise
   // we might mess things up on an existing site.
-  if (drupal_lookup_path('source', 'data') or drupal_lookup_path('source', 'data.json')) {
-    $requirements['path_exists'] = array(
-      'title' => $t('Path Exists!'),
-      'description' => 'Path data or data.json exists, cannot enable.',
-      'severity' => REQUIREMENT_ERROR,
-      );
+  if ($phase == 'install') {
+    if (drupal_lookup_path('source', 'data') or drupal_lookup_path('source', 'data.json')) {
+      $requirements['path_exists'] = array(
+        'title' => $t('Path Exists!'),
+        'description' => 'Path data or data.json exists, cannot enable.',
+        'severity' => REQUIREMENT_ERROR,
+        );
+    }  
   }
   return $requirements;
 }
