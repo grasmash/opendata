@@ -18,35 +18,12 @@ function opendata_views_post_render(&$view, &$output, &$cache) {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function opendata_view_form_opendata_settings_alter(&$form, &$formstate, $formid) {
+function opendata_view_form_opendata_settings_alter(&$form, &$form_state, $form_id) {
   module_load_include('inc', 'opendata_view');
-
-  $views = views_get_all_views();
-  $myview = $views['opendata'];
-  $viewtype = $myview->type;
-
-  // Make sure our submit handler gets called.
-  array_unshift($form['#submit'], 'opendata_view_save_view_handler');
-  $formstate['opendata_view'] = $myview;
-
-  if ($viewtype == 'Overridden') {
-    // Get the current submit handler.
-    $path1 = $myview->display['page']->display_options['path'];
-
-  }
-  else {
-    $path1 = variable_get('opendata_path_html', 'data');
-  }
 
   $form['opendata']['opendata_theming'] = array(
     '#type' => 'checkbox',
     '#title' => t('Apply default theming to /data page'),
     '#default_value' => variable_get('opendata_theming', TRUE),
-  );
-
-  $form['opendata']['opendata_path_html'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Path to the human-readable view'),
-    '#default_value' => $path1,
   );
 }
