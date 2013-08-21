@@ -12,3 +12,9 @@ Module Dependencies:
    automatically via Feeds or Migrate.
 4) View /data.json and /data.
 5) Making any necessary theming changes to /data.
+
+
+Updating Open Data
+==================================
+
+Please see the included UPDATE.txt file.
