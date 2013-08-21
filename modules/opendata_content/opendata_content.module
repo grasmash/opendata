@@ -16,12 +16,16 @@ function opendata_content_node_validate($node, $form, &$form_state) {
     $identifier = field_get_items('node', $node, 'field_opendata_identifier', $node->language);
 
     $query = new EntityFieldQuery();
-    $query->fieldCondition('field_opendata_identifier', 'value', $identifier[0]['value'], '=');
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'opendata_dataset')
+      ->fieldCondition('field_opendata_identifier', 'value', $identifier[0]['value'], '=');
 
     $result = $query->execute();
-
-    if ($result) {
-      form_set_error('field_opendata_identifier', 'The Unique Identifier supplied is already in use.');
+    
+    if (isset($result['node'])) {
+      if (array_keys($result['node']) != array($node->nid)) {     
+        form_set_error('field_opendata_identifier', 'The Unique Identifier supplied is already in use.');
+      }
     }
 
     // Check that modified is YYYY-MM-DD.
