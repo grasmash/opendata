@@ -67,10 +67,7 @@ function opendata_build_rows($nodes) {
 
     // Common Core (Required if Applicable) fields.
     $row->dataDictionary = opendata_get_field_value($node, 'field_opendata_data_dictionary', 'value');
-
-    // Build distributions.
     $row->distribution = opendata_build_distributions($node);
-
     $row->webService = opendata_get_field_value($node, 'field_opendata_web_service', 'value');
     $row->license = opendata_get_field_value($node, 'field_opendata_license', 'value');
     $row->spatial = opendata_get_field_value($node, 'field_opendata_spatial', 'value');
