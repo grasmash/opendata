@@ -36,23 +36,26 @@ function opendata_content_requirements($phase) {
  */
 function opendata_content_install() {
   global $base_url;
+  global $user;
 
   $node = new StdClass();
   $node->title = 'Data Catalog';
   $node->type = 'opendata_dataset';
+  $node->uid = $user->uid;
+  $node->status = 1;
   node_object_prepare($node);
 
   $node->language = LANGUAGE_NONE;
-  $node->field_opendata_description[$node->language][0]['value']  = 'Data Catalog';
-  $node->field_opendata_keyword[$node->language][0]['value']      = 'catalog';
-  $node->field_opendata_modified[$node->language][0]['value']     = date('Y-m-d');
-  $node->field_opendata_publisher[$node->language][0]['value']    = 'Agency.gov';
-  $node->field_opendata_person[$node->language][0]['value']       = 'Lastname, Firstname';
-  $node->field_opendata_mbox[$node->language][0]['email']         = 'firstname.lastname@example.gov';
-  $node->field_opendata_identifier[$node->language][0]['value']   = 'catalog';
-  $node->field_opendata_access_level[$node->language][0]['value'] = 'public';
+  $node->field_opendata_description[$node->language][]['value']  = 'Data Catalog';
+  $node->field_opendata_keyword[$node->language][]['value']      = 'catalog';
+  $node->field_opendata_modified[$node->language][]['value']     = date('Y-m-d');
+  $node->field_opendata_publisher[$node->language][]['value']    = 'Agency.gov';
+  $node->field_opendata_person[$node->language][]['value']       = 'Lastname, Firstname';
+  $node->field_opendata_mbox[$node->language][]['email']         = 'firstname.lastname@example.gov';
+  $node->field_opendata_identifier[$node->language][]['value']   = 'catalog';
+  $node->field_opendata_access_level[$node->language][]['value'] = 'public';
 
-  $node->field_opendata_distribution[$node->language][0] = array (
+  $node->field_opendata_distribution[$node->language][] = array (
     'access_url' => $base_url . '/data.json',
     'format'     => 'json',
   );

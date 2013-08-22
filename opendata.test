@@ -1,5 +1,39 @@
 <?php
 /**
+ * Content test for Open Data.
+ */
+class OpenDataContentTestCase extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('Content'),
+      'description' => t('Verifies correct content and content structure Open Data.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content');
+  }
+
+  public function testContent() {
+    // Load Catalog node.
+    $catalog_nid = variable_get('opendata_catalog_node', 0);
+    $this->assertNotEqual($catalog_nid, 0, t('Catalog NID is set to @nid', array('@nid' => $catalog_nid)));
+    $catalog_node = node_load($catalog_nid);
+    // debug('Catalog node loaded: ' . var_export($catalog_node, TRUE));
+
+    // Check that catalog fields are set.
+    $this->assertTrue(isset($catalog_node->field_opendata_distribution['und'][0]), t('Catalog node field_opendata_distribution is set.'));
+    $this->assertTrue(isset($catalog_node->field_opendata_identifier['und'][0]), t('Catalog node field_opendata_identifier is set.'));
+    $this->assertTrue(isset($catalog_node->field_opendata_mbox['und'][0]), t('Catalog node field_opendata_mbox is set.'));
+  }
+}
+/**
  * JSON test for Open Data.
  */
 class OpenDataJSONTestCase extends DrupalWebTestCase {
@@ -19,31 +53,16 @@ class OpenDataJSONTestCase extends DrupalWebTestCase {
   public function setUp() {
     // Enable modules.
     parent::setUp('opendata', 'opendata_content');
-
-    // Create and log in our privileged user.
-    /*
-    $this->privileged_user = $this->drupalCreateUser(array(
-      'administer nodes',
-    ));
-    $this->drupalLogin($this->privileged_user);
-    */
   }
 
-
   public function testViewJSON() {
-
-    // Load Catalog node.
     $catalog_nid = variable_get('opendata_catalog_node', 0);
-    $this->assertNotEqual($catalog_nid, 0, t('Catalog NID is set to @nid', array('@nid' => $catalog_nid)));
-
     $catalog_node = node_load($catalog_nid);
-    // debug('Catalog node loaded: ' . var_export($catalog_node, TRUE));
 
     $this->drupalGet('data.json');
     $this->assertRaw(t('"title":"@title"', array('@title' => json_encode($catalog_node->title))), t('Data Catalog title JSON is displayed correctly.'));
 
     $vars = array(
-      // May need to escape slashes on this first.
       '@access_url' => json_encode($catalog_node->field_opendata_distribution['und'][0]['access_url']),
       '@format' => json_encode($catalog_node->field_opendata_distribution['und'][0]['format']),
     );
@@ -73,7 +92,6 @@ class OpenDataAdminTestCase extends DrupalWebTestCase {
 
     // Create and log in our privileged user.
     $this->privileged_user = $this->drupalCreateUser(array(
-      'create opendata_dataset content',
       'administer site configuration',
     ));
     $this->drupalLogin($this->privileged_user);
@@ -81,6 +99,7 @@ class OpenDataAdminTestCase extends DrupalWebTestCase {
 
   public function testChangeAdminSettings() {
     $this->drupalGet('admin/config/services/opendata');
+    // $this->assertText(t('Simpletest Example Node Type @title has been created.', array('@title' => $edit['title'])));
   }
 
   public function testCreateDataset() {
@@ -88,6 +107,7 @@ class OpenDataAdminTestCase extends DrupalWebTestCase {
     $edit = array();
     $edit['title'] = $this->randomName(8);
     // $edit["body[und][0][value]"] = $this->randomName(16);
+    // post more fields.
     $this->drupalPost('node/add/opendata-dataset', $edit, t('Save'));
     // $this->assertText(t('Simpletest Example Node Type @title has been created.', array('@title' => $edit['title'])));
   }
@@ -121,5 +141,6 @@ class OpenDataHTMLTestCase extends DrupalWebTestCase {
     $catalog_node = node_load($catalog_nid);
 
     $this->drupalGet('data');
+    // $this->assertText(t('Simpletest Example Node Type @title has been created.', array('@title' => $edit['title'])));
   }
 }
