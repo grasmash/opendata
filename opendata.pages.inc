@@ -31,6 +31,7 @@ function opendata_get_datasets() {
     ->propertyOrderBy('sticky', 'DESC')
     ->propertyOrderBy('created', 'DESC')
     ->fieldCondition('field_opendata_access_level', 'value', 'public', '=')
+    ->addTag('opendata_datasets')
     // Run the query as user 1.
     ->addMetaData('account', user_load(1));
     $entities = $query->execute();
