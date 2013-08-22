@@ -38,20 +38,21 @@ function opendata_content_install() {
   global $base_url;
 
   $node = new StdClass();
-  $node->type = 'opendata_dataset';
-  $node->language = LANGUAGE_NONE;
-
   $node->title = 'Data Catalog';
-  $node->field_opendata_description['und'][0]['value']  = 'Data Catalog';
-  $node->field_opendata_keyword['und'][0]['value']      = 'catalog';
-  $node->field_opendata_modified['und'][0]['value']     = date('Y-m-d');
-  $node->field_opendata_publisher['und'][0]['value']    = 'Agency.gov';
-  $node->field_opendata_person['und'][0]['value']       = 'Lastname, Firstname';
-  $node->field_opendata_mbox['und'][0]['email']         = 'firstname.lastname@example.gov';
-  $node->field_opendata_identifier['und'][0]['value']   = 'catalog';
-  $node->field_opendata_access_level['und'][0]['value'] = 'public';
+  $node->type = 'opendata_dataset';
+  node_object_prepare($node);
 
-  $node->field_opendata_distribution['und'][0] = array (
+  $node->language = LANGUAGE_NONE;
+  $node->field_opendata_description[$node->language][0]['value']  = 'Data Catalog';
+  $node->field_opendata_keyword[$node->language][0]['value']      = 'catalog';
+  $node->field_opendata_modified[$node->language][0]['value']     = date('Y-m-d');
+  $node->field_opendata_publisher[$node->language][0]['value']    = 'Agency.gov';
+  $node->field_opendata_person[$node->language][0]['value']       = 'Lastname, Firstname';
+  $node->field_opendata_mbox[$node->language][0]['email']         = 'firstname.lastname@example.gov';
+  $node->field_opendata_identifier[$node->language][0]['value']   = 'catalog';
+  $node->field_opendata_access_level[$node->language][0]['value'] = 'public';
+
+  $node->field_opendata_distribution[$node->language][0] = array (
     'access_url' => $base_url . '/data.json',
     'format'     => 'json',
   );
@@ -59,6 +60,7 @@ function opendata_content_install() {
   // Set sticky so the catalog will appear at the top of the list.
   $node->sticky = 1;
 
+  $node = node_submit($node);
   node_save($node);
 
   variable_set('opendata_catalog_node', $node->nid);

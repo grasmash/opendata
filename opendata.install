@@ -2,7 +2,7 @@
 
 /**
  * Implements hook_requirements();
- **/
+ */
 function opendata_requirements($phase = 'install') {
   $requirements = array();
   $t = get_t();

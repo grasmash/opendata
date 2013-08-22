@@ -1,0 +1,125 @@
+<?php
+/**
+ * JSON test for Open Data.
+ */
+class OpenDataJSONTestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('JSON'),
+      'description' => t('Verifies correct JSON output for Open Data.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content');
+
+    // Create and log in our privileged user.
+    /*
+    $this->privileged_user = $this->drupalCreateUser(array(
+      'administer nodes',
+    ));
+    $this->drupalLogin($this->privileged_user);
+    */
+  }
+
+
+  public function testViewJSON() {
+
+    // Load Catalog node.
+    $catalog_nid = variable_get('opendata_catalog_node', 0);
+    $this->assertNotEqual($catalog_nid, 0, t('Catalog NID is set to @nid', array('@nid' => $catalog_nid)));
+
+    $catalog_node = node_load($catalog_nid);
+    // debug('Catalog node loaded: ' . var_export($catalog_node, TRUE));
+
+    $this->drupalGet('data.json');
+    $this->assertRaw(t('"title":"@title"', array('@title' => json_encode($catalog_node->title))), t('Data Catalog title JSON is displayed correctly.'));
+
+    $vars = array(
+      // May need to escape slashes on this first.
+      '@access_url' => json_encode($catalog_node->field_opendata_distribution['und'][0]['access_url']),
+      '@format' => json_encode($catalog_node->field_opendata_distribution['und'][0]['format']),
+    );
+    $this->assertRaw(t('"distribution":[{"accessURL":"@access_url","format":"@format"}]', $vars), t('Data Catalog distribution JSON is displayed correctly.'));
+  }
+}
+
+/**
+ * Administrator test for Open Data.
+ */
+class OpenDataAdminTestCase extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('Admin'),
+      'description' => t('Verifies correct behavior for administering Open Data.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content');
+
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser(array(
+      'create opendata_dataset content',
+      'administer site configuration',
+    ));
+    $this->drupalLogin($this->privileged_user);
+  }
+
+  public function testChangeAdminSettings() {
+    $this->drupalGet('admin/config/services/opendata');
+  }
+
+  public function testCreateDataset() {
+    // Create node to edit.
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    // $edit["body[und][0][value]"] = $this->randomName(16);
+    $this->drupalPost('node/add/opendata-dataset', $edit, t('Save'));
+    // $this->assertText(t('Simpletest Example Node Type @title has been created.', array('@title' => $edit['title'])));
+  }
+}
+
+
+/**
+ * HTML tests for Open Data.
+ */
+class OpenDataHTMLTestCase extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('HTML'),
+      'description' => t('Verifies correct display of Open Data HTML.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content', 'opendata_view');
+  }
+
+  public function testViewHTML() {
+    // Load Catalog node.
+    $catalog_nid = variable_set('opendata_catalog_node', 0);
+    $catalog_node = node_load($catalog_nid);
+
+    $this->drupalGet('data');
+  }
+}

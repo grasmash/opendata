@@ -35,10 +35,14 @@ function opendata_get_datasets() {
     // Run the query as user 1.
     ->addMetaData('account', user_load(1));
     $entities = $query->execute();
+
+  if (!empty($entities['node'])) {
     $nids = array_keys($entities['node']);
     $nodes = node_load_multiple($nids);
+    return $nodes;
+  }
 
-  return $nodes;
+  return array();
 }
 
 /**
@@ -51,7 +55,7 @@ function opendata_get_datasets() {
  *   An array of objects formatted as per Open Data schema specifications.
  */
 function opendata_build_rows($nodes) {
-
+  $rows = array();
   foreach ($nodes as $node) {
 
     $row = new stdClass();
