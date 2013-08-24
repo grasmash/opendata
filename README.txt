@@ -25,6 +25,25 @@ described here:
 
   http://project-open-data.github.io/
 
+
+Submodules
+---------------------------------------------------
+
+### Open Data
+This module relies on the opendata_content module, and provides a JSON feed
+of opendata_content nodes at opendata.json.
+
+### Open Data Content
+This module provides the opendata_dataset content type, and relies on
+opendata_distribution_field, which provides a custom field type.
+
+### Open Data View
+This module provides a view to display opendata_dataset nodes at /data.
+
+### Open Data RDF
+This module adds supplemental RDF data to the view provided at /data.
+
+
 Installing Open Data
 ---------------------------------------------------
 
