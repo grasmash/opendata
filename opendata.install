@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Implements hook_requirements();
+ * Implements hook_requirements().
  */
 function opendata_requirements($phase = 'install') {
   $requirements = array();
@@ -14,7 +14,7 @@ function opendata_requirements($phase = 'install') {
       'title' => $t('Path Exists!'),
       'description' => 'Path data or data.json exists, cannot enable.',
       'severity' => REQUIREMENT_ERROR,
-      );
+    );
   }
   return $requirements;
 }
