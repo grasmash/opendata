@@ -80,8 +80,16 @@ function opendata_distribution_field_settings_form($field, $instance, $has_data)
 function opendata_distribution_field_field_validate($obj_type, $object, $field, $instance, $langcode, &$items, &$errors) {
   if ($field['type'] == 'opendata_distribution') {
     foreach ($items as $delta => $item) {
-      // Test URL.
       if (!empty($item['access_url'])) {
+
+        // Test URL.
+        if (!valid_url($item['access_url'], TRUE)) {
+          $errors[$field['field_name']]['und'][$delta][] = array(
+            'error' => 'opendata_distribution_access_url',
+            'message' => t('The URL !url is not valid', array('!url' => $item['access_url'])),
+          );
+        }
+
         // If URL isn't empty, we need a format.
         if (empty($item['format'])) {
           $errors[$field['field_name']][$langcode][$delta][] = array(
@@ -124,22 +132,19 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
     $element['access_url'] = array(
       '#type' => 'textfield',
       '#title' => t('Download URL'),
-      '#default_value' => isset($items[$delta]['access_url']) ?
-                          $items[$delta]['access_url'] : NULL,
+      '#default_value' => isset($items[$delta]['access_url']) ? $items[$delta]['access_url'] : NULL,
       '#weight' => 0,
       ) + $base;
     $element['format'] = array(
       '#type' => 'textfield',
       '#title' => t('Format'),
-      '#default_value' => isset($items[$delta]['format']) ?
-                          $items[$delta]['format'] : NULL,
+      '#default_value' => isset($items[$delta]['format']) ? $items[$delta]['format'] : NULL,
       '#weight' => 1,
       ) + $base;
     $element['size'] = array(
       '#type' => 'textfield',
       '#title' => t('Size'),
-      '#default_value' => isset($items[$delta]['size']) ?
-                          $items[$delta]['size'] : NULL,
+      '#default_value' => isset($items[$delta]['size']) ? $items[$delta]['size'] : NULL,
       '#weight' => 1,
       ) + $base;
   }
@@ -183,11 +188,14 @@ function opendata_distribution_field_field_formatter_view($entity_type, $entity,
         '#type' => 'ul',
         '#attributes' => array(),
         '#items' => array(
-          'Download URL: ' . l($access_url, $access_url),
-          'Format: ' . $format,
-          'Size: ' . $size,
+          'access_url' => 'Download URL: ' . l($access_url, $access_url),
+          'format' => 'Format: ' . $format,
         ),
       );
+
+      if (!empty($size)) {
+        $element[$delta]['size'] = 'Size: ' . $size;
+      }
     }
   }
 

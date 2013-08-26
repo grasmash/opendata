@@ -28,15 +28,21 @@ function opendata_get_datasets() {
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'opendata_dataset')
     ->propertyCondition('status', 1)
+    ->propertyOrderBy('sticky', 'DESC')
     ->propertyOrderBy('created', 'DESC')
     ->fieldCondition('field_opendata_access_level', 'value', 'public', '=')
+    ->addTag('opendata_datasets')
     // Run the query as user 1.
     ->addMetaData('account', user_load(1));
     $entities = $query->execute();
+
+  if (!empty($entities['node'])) {
     $nids = array_keys($entities['node']);
     $nodes = node_load_multiple($nids);
+    return $nodes;
+  }
 
-  return $nodes;
+  return array();
 }
 
 /**
@@ -49,7 +55,7 @@ function opendata_get_datasets() {
  *   An array of objects formatted as per Open Data schema specifications.
  */
 function opendata_build_rows($nodes) {
-
+  $rows = array();
   foreach ($nodes as $node) {
 
     $row = new stdClass();
@@ -67,10 +73,7 @@ function opendata_build_rows($nodes) {
 
     // Common Core (Required if Applicable) fields.
     $row->dataDictionary = opendata_get_field_value($node, 'field_opendata_data_dictionary', 'value');
-
-    // Build distributions.
     $row->distribution = opendata_build_distributions($node);
-
     $row->webService = opendata_get_field_value($node, 'field_opendata_web_service', 'value');
     $row->license = opendata_get_field_value($node, 'field_opendata_license', 'value');
     $row->spatial = opendata_get_field_value($node, 'field_opendata_spatial', 'value');

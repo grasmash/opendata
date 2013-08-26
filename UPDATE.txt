@@ -1,0 +1,8 @@
+Updating Open Data
+==================================
+
+This module supplies [features](https://drupal.org/project/features) to define
+required content types and views. When new versions of Open Data are released,
+changes to these features may be included. To apply these updates, you will need
+up to update the Open Data module and [revert](https://drupal.org/node/582680)
+the affected features via the UI or [Drush](https://drupal.org/project/drush).

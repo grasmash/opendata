@@ -1,0 +1,174 @@
+<?php
+/**
+ * Content test for Open Data.
+ */
+class OpenDataContentTestCase extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('Content'),
+      'description' => t('Verifies correct content and content structure Open Data.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content');
+  }
+
+  public function testContent() {
+    // Load Catalog node. THIS DOESN'T WORK! Somehow, field values aren't set
+    // when opendata_content_catalog_node_create() is called by hook_install().
+    // $catalog_node = node_load($catalog_nid);
+
+    $catalog_node = opendata_content_catalog_node_create();
+    $catalog_nid = variable_get('opendata_catalog_node', 0);
+    // debug('Catalog node created: ' . var_export($catalog_node, TRUE));
+    $this->assertNotEqual($catalog_nid, 0, t('Catalog NID is set to @nid', array('@nid' => $catalog_nid)));
+
+    // Check that catalog fields are set.
+    $this->assertTrue(isset($catalog_node->field_opendata_distribution['und'][0]), t('Catalog node field_opendata_distribution is set.'));
+    $this->assertTrue(isset($catalog_node->field_opendata_identifier['und'][0]), t('Catalog node field_opendata_identifier is set.'));
+    $this->assertTrue(isset($catalog_node->field_opendata_mbox['und'][0]), t('Catalog node field_opendata_mbox is set.'));
+  }
+}
+/**
+ * JSON test for Open Data.
+ */
+class OpenDataJSONTestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('JSON'),
+      'description' => t('Verifies correct JSON output for Open Data.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content');
+  }
+
+  public function testViewJSON() {
+    $catalog_node = opendata_content_catalog_node_create();
+
+    $this->drupalGet('data.json');
+    $this->assertRaw(t('"title":!title', array('!title' => json_encode($catalog_node->title))), t('Data Catalog title JSON is displayed correctly.'));
+
+    $vars = array(
+      '!access_url' => json_encode($catalog_node->field_opendata_distribution['und'][0]['access_url']),
+      '!format' => json_encode($catalog_node->field_opendata_distribution['und'][0]['format']),
+    );
+    $this->assertRaw(t('"distribution":[{"accessURL":!access_url,"format":!format}]', $vars), t('Data Catalog distribution JSON is displayed correctly.'));
+  }
+}
+
+/**
+ * Administrator test for Open Data.
+ */
+class OpenDataAdminTestCase extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('Admin'),
+      'description' => t('Verifies correct behavior for administering Open Data.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content');
+
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser(array(
+      'administer site configuration',
+    ));
+    $this->drupalLogin($this->privileged_user);
+  }
+
+  // @todo create this test.
+  public function testChangeAdminSettings() {
+    // $this->drupalGet('admin/config/services/opendata');
+    // $this->assertText(t('Simpletest Example Node Type @title has been created.', array('@title' => $edit['title'])));
+  }
+
+  // @todo create this test.
+  public function testCreateDataset() {
+    // Create node to edit.
+    // $edit = array();
+    // $edit['title'] = $this->randomName(8);
+    // $edit["body[und][0][value]"] = $this->randomName(16);
+    // post more fields.
+    // $this->drupalPost('node/add/opendata-dataset', $edit, t('Save'));
+    // $this->assertText(t('Simpletest Example Node Type @title has been created.', array('@title' => $edit['title'])));
+  }
+}
+
+
+/**
+ * HTML tests for Open Data.
+ */
+class OpenDataHTMLTestCase extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('HTML'),
+      'description' => t('Verifies correct display of Open Data HTML.'),
+      'group' => t('Open Data'),
+    );
+  }
+
+  public function setUp() {
+    // Enable modules.
+    parent::setUp('opendata', 'opendata_content', 'opendata_view');
+  }
+
+  public function testViewHTML() {
+    // Load Catalog node.
+    $catalog_node = opendata_content_catalog_node_create();
+    $vars = array(
+      '@title' => $catalog_node->title,
+      '@description' => $catalog_node->field_opendata_description['und'][0]['value'],
+      '@keyword' => $catalog_node->field_opendata_keyword['und'][0]['value'],
+      '@modified' => $catalog_node->field_opendata_modified['und'][0]['value'],
+      '@publisher' => $catalog_node->field_opendata_publisher['und'][0]['value'],
+      '@person' => $catalog_node->field_opendata_person['und'][0]['value'],
+      '@mbox' => $catalog_node->field_opendata_mbox['und'][0]['email'],
+      '@identifier' => $catalog_node->field_opendata_identifier['und'][0]['value'],
+      '@access_level' => ucfirst($catalog_node->field_opendata_access_level['und'][0]['value']),
+      '@access_url' => $catalog_node->field_opendata_distribution['und'][0]['access_url'],
+      '@format' => $catalog_node->field_opendata_distribution['und'][0]['format'],
+    );
+
+    debug(t('@access_level', $vars));
+
+    $this->drupalGet('data');
+    $this->assertText(t('@title', $vars), t('Data catalog title is displayed correctly.'));
+    $this->assertText(t('@description', $vars), t('Data catalog description is displayed correctly.'));
+    $this->assertText(t('@keyword', $vars), t('Data catalog keyword is displayed correctly.'));
+    $this->assertText(t('@modified', $vars), t('Data catalog last update is displayed correctly.'));
+    $this->assertText(t('@publisher', $vars), t('Data catalog publisher is displayed correctly.'));
+    $this->assertText(t('@person', $vars), t('Data catalog person is displayed correctly.'));
+    $this->assertText(t('@mbox', $vars), t('Data catalog person is displayed correctly.'));
+    $this->assertText(t('@identifier', $vars), t('Data catalog identifier is displayed correctly.'));
+    $this->assertText(t('@access_level', $vars), t('Data catalog access level is displayed correctly.'));
+    $this->assertText(t('Download URL: @access_url', $vars), t('Data catalog download URL is displayed correctly.'));
+    $this->assertText(t('Format: @format', $vars), t('Data catalog distribution format is displayed correctly.'));
+  }
+}

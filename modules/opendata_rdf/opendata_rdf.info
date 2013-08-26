@@ -1,0 +1,6 @@
+name = Project Open Data RDF
+description = Provides supplemental RDF data to the Open Data view provided at /data.
+core = 7.x
+package = Project Open Data
+dependencies[] = opendata_view
+dependencies[] = schemaorg
