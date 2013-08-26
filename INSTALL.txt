@@ -5,15 +5,17 @@ Module Dependencies:
 * Email
 * Field Group
 * Features
+* Views
 
-1) Download all dependencies.
+1) Download and enable all dependencies.
 2) Enable opendata and opendata_view.
 3) One opendata_dataset node has been created automatically as a self-reference
-   for the Opend Data catalog. Update this node with relevent information.
+   for the Open Data catalog. Update this node with relevent information. Until
+   this node has been updated, an ERROR will be displayed on administrative page.
 4) Populate the new 'dataset' content type. This may be done manually, or
    automatically via Feeds or Migrate.
 5) View /data.json and /data.
-6) Making any necessary theming changes to /data. Default theming may be
+6) Make any necessary theming changes to /data. Default theming may be
    disabled at /admin/admin/config/services/opendata.
 
 
