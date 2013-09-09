@@ -3,10 +3,10 @@
 /**
  * Implements hook_requirements();
  **/
-function opendata_view_requirements($phase) {
+function opendata_requirements($phase) {
   $requirements = array();
   $t = get_t();
-  // If the path /data or data.json exists, refuse to install otherwise
+  // If the path /data or /data.json exists, refuse to install otherwise
   // we might mess things up on an existing site.
   if ($phase == 'install') {
     if (drupal_lookup_path('source', 'data') or drupal_lookup_path('source', 'data.json')) {
