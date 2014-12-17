@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Install file for opendata_distribution_field.
+ */
+
+/**
+ * Abort update from opendata schema 1.0 to 1.1.
+ */
+function opendata_distribution_field_update_7200(&$sandbox) {
+  // If this updateN is trying to run, it means an update from version 1.0 is
+  // being attempted. That is not accounted for so yell loudly.
+  $message = t('You are attempting to update from Opendata Schema 1.0 to Schema 1.1.');
+  $message .= ' ' . t('This is not supported.');
+  $message .= ' ' . t('In order to use Opendata Schema 1.1 you will need to uninstall and reinstall the module.');
+  $message .= ' ' . t('To safely stay at Schema 1.0, replace this module with the version from the 7.x-1.x branch.');
+  // Watchdog.
+  watchdog('opendata_distribution_field', $message, array(), WATCHDOG_ALERT);
+  // Drupal Set Message.
+  drupal_set_message($message, 'warning');
+  // Throw exception.
+  throw new DrupalUpdateException($message);
+}

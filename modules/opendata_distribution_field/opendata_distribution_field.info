@@ -1,6 +1,6 @@
-name = "Project Open Data Download URL Field"
+name = "Project Open Data Distribution Field"
 core = "7.x"
-description = "Provides a custom field for the /data listing's distribution (Download URL) property"
+description = "Provides a custom field set and widget for a data listing's distribution(s)."
 project = "project_open_data"
-version = "7.x-1.0"
+version = "7.x-2.x"
 package = Project Open Data
