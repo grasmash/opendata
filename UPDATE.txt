@@ -6,3 +6,11 @@ required content types and views. When new versions of Open Data are released,
 changes to these features may be included. To apply these updates, you will need
 up to update the Open Data module and [revert](https://drupal.org/node/582680)
 the affected features via the UI or [Drush](https://drupal.org/project/drush).
+
+
+Updating from Open Data Schema 1.0 to 1.1
+-----------------------------------------
+The 7.x-1.x branch is to be used for schema version 1.0.
+The 7.x-2.x branch is to be used for schema version 1.1.
+There is currently NO upgrade path from version 1.0 to version 1.1.  You will
+need to uninstall all Project Open Data modules and reinstall the new version.
