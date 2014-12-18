@@ -23,7 +23,7 @@ Overview
 This module provides helpful tools for websites implementing /data pages as
 described here:
 
-  http://project-open-data.github.io/
+  https://project-open-data.cio.gov/v1.1/schema
 
 
 Submodules
@@ -49,10 +49,12 @@ Installing Open Data
 
 For installation instructions, see INSTALL.txt.
 
+
 Updating Open Data
 ---------------------------------------------------
 
 Please see the included UPDATE.txt file.
+
 
 TOD0
 ---------------------------------------------------
@@ -60,6 +62,7 @@ TOD0
 * Enforce creation of self-referencial node. I.E., dataset for /data.json page.
 * Provide bundled migrate classes for importing dataset nodes.
 * Provide bundled migrate class for moving data from opendata into dkan_dataset.
+
 
 More Info about the Open Data Policy
 ---------------------------------------------------

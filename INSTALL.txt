@@ -16,7 +16,7 @@ Module Dependencies:
    automatically via Feeds or Migrate.
 5) View /data.json and /data.
 6) Make any necessary theming changes to /data. Default theming may be
-   disabled at /admin/admin/config/services/opendata.
+   disabled at /admin/config/services/opendata.
 
 
 
