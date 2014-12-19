@@ -589,8 +589,8 @@ function opendata_content_field_default_field_bases() {
       'format' => array(
         0 => 'format',
       ),
-      'size' => array(
-        0 => 'size',
+      'download_url' => array(
+        0 => 'download_url',
       ),
     ),
     'locked' => 0,
