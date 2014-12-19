@@ -108,12 +108,7 @@ function opendata_distribution_field_field_schema($field) {
 function opendata_distribution_field_field_is_empty($item, $field) {
   if ($field['type'] == 'opendata_distribution') {
     // A distribution must have either an access url or a download url.
-    if (!empty($item['access_url']) || !empty($item['download_url'])) {
-      return FALSE;
-    }
-    else {
-      return TRUE;
-    }
+    return (empty($item['access_url']) && empty($item['download_url']));
   }
 }
 
@@ -149,7 +144,7 @@ function opendata_distribution_field_field_validate($obj_type, $object, $field, 
       if (empty($item['access_url']) && empty($item['download_url'])) {
         // Both URL fields are empty. Set everything else to empty to avoid
         // saving  and presenting disconnected data.
-        unset($items);
+        unset($item);
       }
     }
   }
@@ -176,28 +171,46 @@ function opendata_distribution_field_field_widget_info() {
  */
 function opendata_distribution_field_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
   $base = $element;
-  $example = t('Example');
 
   $description = t('URL providing indirect access to a dataset, for example via API or a graphical interface.');
-  $description2 = t('This should be the URL for an indirect means of accessing the data, such as API documentation, a wizard or other graphical interface used to generate a download, feed, or a request form for the data.');
+  $description .= '<br /> ' . t('This should be the URL for an indirect means of accessing the data, such as API documentation, a wizard or other graphical interface used to generate a download, feed, or a request form for the data.');
+  $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'http://www.agency.gov/api/vegetables/'));
   if ($instance['widget']['type'] == 'opendata_distribution') {
+    $iana_media_types = drupal_map_assoc(array(
+      'application/json' => 'application/json',
+      'application/pdf' => 'application/pdf',
+      'XML' => drupal_map_assoc(array(
+        'application/xml',
+        'application/atom+xml',
+        'application/rdf+xml',
+        'application/rss+xml',
+      )),
+      'Spreadsheet' => drupal_map_assoc(array(
+        'text/csv',
+        'application/vnd.oasis.opendocument.spreadsheet',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      )),
+    ));
+
     $element['access_url'] = array(
       '#type' => 'textfield',
       '#title' => t('Access URL'),
-      '#default_value' => isset($items[$delta]['access_url']) ? $items[$delta]['access_url'] : NULL,
-      '#description' => "{$description} <br />{$description2} <br />{$example}: <i>http://www.agency.gov/api/vegetables/</i>",
+      '#default_value' => !empty($items[$delta]['access_url']) ? $items[$delta]['access_url'] : NULL,
+      '#description' => $description,
       '#weight' => 0,
     ) + $base;
 
     $description = t('URL providing direct access to a downloadable file of a dataset.');
-    $description2 = t('This must be the direct download URL.');
-    $description3 = t('Must be accompanied by Media Type.');
-    $description4 = t('Other means of accessing the dataset should be expressed using Access URL.');
+    $description .= '<br /> ' . t('This must be the direct download URL.');
+    $description .= '<br /> ' . t('Must be accompanied by Media Type.');
+    $description .= '<br /> ' . t('Other means of accessing the dataset should be expressed using Access URL.');
+    $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'http://www.agency.gov/vegetables/listofvegetables.csv'));
     $element['download_url'] = array(
       '#type' => 'textfield',
       '#title' => t('Download URL'),
-      '#default_value' => isset($items[$delta]['download_url']) ? $items[$delta]['download_url'] : NULL,
-      '#description' => "{$description}<br /> {$description2}<br /> {$description3}<br /> {$description4} <br />{$example}: <i>http://www.agency.gov/vegetables/listofvegetables.csv</i>",
+      '#default_value' => !empty($items[$delta]['download_url']) ? $items[$delta]['download_url'] : NULL,
+      '#description' => $description,
       '#weight' => 1,
     ) + $base;
 
@@ -205,39 +218,30 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
       '#type' => 'select',
       '#multiple' => FALSE,
       '#title' => t('Media Type'),
-      '#default_value' => isset($items[$delta]['media_type']) ? $items[$delta]['media_type'] : NULL,
+      '#default_value' => !empty($items[$delta]['media_type']) ? $items[$delta]['media_type'] : NULL,
       '#description' => t('The machine-readable file format (IANA Media Type or MIME Type) of the distribution’s downloadURL.'),
-      '#options' => array(
-        0 => t('- Select a value -'),
-        'application/json' => 'application/json',
-        'application/pdf' => 'application/pdf',
-        'application/xml' => 'application/xml',
-        'application/atom+xml' => '- application/atom+xml',
-        'application/rdf+xml' => '- application/rdf+xml',
-        'application/rss+xml' => '- application/rss+xml',
-        'text/csv' => 'text/csv',
-        'application/vnd.oasis.opendocument.spreadsheet' => '- application/vnd.oasis.opendocument.spreadsheet',
-        'application/vnd.ms-excel' => '- application/vnd.ms-excel',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => '- application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      ),
+      '#empty_option' => '- ' . t('None') . ' -',
+      '#options' => $iana_media_types,
       '#weight' => 2,
     ) + $base;
 
     $description = t('URI used to identify a standardized specification the distribution conforms to.');
+    $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'http://www.agency.gov/vegetables-data-standard/'));
     $element['conforms_to'] = array(
       '#type' => 'textfield',
       '#title' => t('Data Standard'),
-      '#default_value' => isset($items[$delta]['conforms_to']) ? $items[$delta]['conforms_to'] : NULL,
-      '#description' => "{$description} <br />{$example}: <i>http://www.agency.gov/vegetables-data-standard/</i>",
+      '#default_value' => !empty($items[$delta]['conforms_to']) ? $items[$delta]['conforms_to'] : NULL,
+      '#description' => $description,
       '#weight' => 3,
     ) + $base;
 
-    $description = t('RL to the data dictionary for the distribution found at the downloadURL.');
+    $description = t('URL to the data dictionary for the distribution found at the downloadURL.');
+    $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'http://www.agency.gov/vegetables/schema.json'));
     $element['described_by'] = array(
       '#type' => 'textfield',
       '#title' => t('Data Dictionary'),
-      '#default_value' => isset($items[$delta]['described_by']) ? $items[$delta]['described_by'] : NULL,
-      '#description' => "{$description} <br />{$example}: <i>http://www.agency.gov/vegetables/schema.json</i>",
+      '#default_value' => !empty($items[$delta]['described_by']) ? $items[$delta]['described_by'] : NULL,
+      '#description' => $description,
       '#weight' => 4,
     ) + $base;
 
@@ -245,50 +249,43 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
       '#type' => 'select',
       '#multiple' => FALSE,
       '#title' => t('Data Dictionary Type'),
-      '#default_value' => isset($items[$delta]['described_by_type']) ? $items[$delta]['described_by_type'] : NULL,
+      '#default_value' => !empty($items[$delta]['described_by_type']) ? $items[$delta]['described_by_type'] : NULL,
       '#description' => t('The machine-readable file format (IANA Media Type or MIME Type) of the distribution’s Data Dictionary URL'),
-      '#options' => array(
-        0 => t('- Select a value -'),
-        'application/json' => 'application/json',
-        'application/pdf' => 'application/pdf',
-        'application/xml' => 'application/xml',
-        'application/atom+xml' => '- application/atom+xml',
-        'application/rdf+xml' => '- application/rdf+xml',
-        'application/rss+xml' => '- application/rss+xml',
-        'text/csv' => 'text/csv',
-        'application/vnd.oasis.opendocument.spreadsheet' => '- application/vnd.oasis.opendocument.spreadsheet',
-        'application/vnd.ms-excel' => '- application/vnd.ms-excel',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => '- application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      ),
+      '#empty_option' => '- ' . t('None') . ' -',
+      '#options' => $iana_media_types,
+
       '#weight' => 5,
     ) + $base;
 
     $description = t('Human-readable name of the distribution. Acronyms should be avoided.');
+    $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'listofvegetables.csv'));
     $element['title'] = array(
       '#type' => 'textfield',
       '#title' => t('Title'),
-      '#default_value' => isset($items[$delta]['title']) ? $items[$delta]['title'] : NULL,
-      '#description' => "{$description} <br />{$example}: <i>listofvegetables.csv</i>",
+      '#default_value' => !empty($items[$delta]['title']) ? $items[$delta]['title'] : NULL,
+      '#description' => $description,
       '#weight' => 6,
     ) + $base;
 
     $description = t('Human-readable description of the distribution.');
     $sample = t('Vegetable data as a zipped CSV file with attached data dictionary.');
+    $description .= '<br /> ' . t('Example: %sample', array('%sample' => $sample));
     $element['description'] = array(
       '#type' => 'textfield',
       '#title' => t('Description'),
-      '#default_value' => isset($items[$delta]['description']) ? $items[$delta]['description'] : NULL,
-      '#description' => "{$description} <br />{$example}: <i>{$sample}</i>",
+      '#default_value' => !empty($items[$delta]['description']) ? $items[$delta]['description'] : NULL,
+      '#description' => $description,
       '#weight' => 7,
     ) + $base;
 
     $description = t('A human-readable description of the file format of a distribution.');
-    $description2 = t('Note: API should always be used to distinguish web APIs.');
+    $description .= '<br />' . t('Note: API should always be used to distinguish web APIs.');
+    $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'CSV'));
     $element['format'] = array(
       '#type' => 'textfield',
       '#title' => t('Format'),
-      '#default_value' => isset($items[$delta]['format']) ? $items[$delta]['format'] : NULL,
-      '#description' => "{$description} {$description2} <br />{$example}: <i>CSV</i>",
+      '#default_value' => !empty($items[$delta]['format']) ? $items[$delta]['format'] : NULL,
+      '#description' => $description,
       '#weight' => 8,
     ) + $base;
   }
@@ -320,35 +317,40 @@ function opendata_distribution_field_field_formatter_view($entity_type, $entity,
       $elements = array();
       // Assemble the elements of a distribution if they exist.
       $elements[] = '@type: dcat:Distribution';
-      if (!empty($item['access_url'])) {
-        $elements[] = 'accessURL:' . l($item['access_url'], $item['access_url']);
-      }
-
-      if (!empty($item['conforms_to'])) {
-        $elements[] = 'conformsTo:' . l($item['conforms_to'], $item['conforms_to']);
-      }
-
-      if (!empty($item['download_url'])) {
-        $elements[] = 'downloadURL:' . l($item['download_url'], $item['download_url']);
-      }
-      if (!empty($item['described_by'])) {
-        $elements[] = 'describedBy:' . l($item['described_by'], $item['described_by']);
-      }
-      if (!empty($item['described_by_type'])) {
-        $elements[] = 'describedByType:' . check_plain($item['described_by_type']);
+      if (!empty($item['title'])) {
+        $elements[] = 'title:' . check_plain($item['title']);
       }
 
       if (!empty($item['description'])) {
-        $elements[] = 'description:' . check_plain($item['description']);
+        $elements[] = 'description: ' . check_plain($item['description']);
       }
+
+      if (!empty($item['access_url'])) {
+        $elements[] = 'accessURL: ' . l($item['access_url'], $item['access_url']);
+      }
+
+      if (!empty($item['download_url'])) {
+        $elements[] = 'downloadURL: ' . l($item['download_url'], $item['download_url']);
+      }
+
+      if (!empty($item['conforms_to'])) {
+        $elements[] = 'conformsTo: ' . l($item['conforms_to'], $item['conforms_to']);
+      }
+
+      if (!empty($item['described_by'])) {
+        $elements[] = 'describedBy: ' . l($item['described_by'], $item['described_by']);
+      }
+
+      if (!empty($item['described_by_type'])) {
+        $elements[] = 'describedByType: ' . check_plain($item['described_by_type']);
+      }
+
       if (!empty($item['format'])) {
-        $elements[] = 'Format:' . check_plain($item['format']);
+        $elements[] = 'Format: ' . check_plain($item['format']);
       }
+
       if (!empty($item['media_type'])) {
-        $elements[] = 'mediaType:' . check_plain($item['media_type']);
-      }
-      if (!empty($item['title'])) {
-        $elements[] = 'title:' . check_plain($item['title']);
+        $elements[] = 'mediaType: ' . check_plain($item['media_type']);
       }
 
       $format = (!empty($item['format'])) ? check_plain($item['format']) : 'UNDEFINED';
@@ -358,7 +360,6 @@ function opendata_distribution_field_field_formatter_view($entity_type, $entity,
         '#type' => 'ul',
         '#attributes' => array(),
         '#items' => $elements,
-
       );
     }
   }
