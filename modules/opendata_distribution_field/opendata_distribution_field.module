@@ -176,7 +176,7 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
   $description .= '<br /> ' . t('This should be the URL for an indirect means of accessing the data, such as API documentation, a wizard or other graphical interface used to generate a download, feed, or a request form for the data.');
   $description .= '<br /> ' . t('Example: %sample', array('%sample' => 'http://www.agency.gov/api/vegetables/'));
   if ($instance['widget']['type'] == 'opendata_distribution') {
-    $iana_media_types = drupal_map_assoc(array(
+    $iana_media_types = array(
       'application/json' => 'application/json',
       'application/pdf' => 'application/pdf',
       'XML' => drupal_map_assoc(array(
@@ -191,7 +191,7 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
         'application/vnd.ms-excel',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       )),
-    ));
+    );
 
     $element['access_url'] = array(
       '#type' => 'textfield',
