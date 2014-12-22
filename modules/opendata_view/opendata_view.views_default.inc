@@ -76,6 +76,23 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_publisher']['settings'] = array(
     'emphasis' => 0,
   );
+  /* Field: Content: subOrganizationOf */
+  $handler->display->display_options['fields']['field_opendata_suborganizationof']['id'] = 'field_opendata_suborganizationof';
+  $handler->display->display_options['fields']['field_opendata_suborganizationof']['table'] = 'field_data_field_opendata_suborganizationof';
+  $handler->display->display_options['fields']['field_opendata_suborganizationof']['field'] = 'field_opendata_suborganizationof';
+  $handler->display->display_options['fields']['field_opendata_suborganizationof']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
   /* Field: Content: Contact Name */
   $handler->display->display_options['fields']['field_opendata_person']['id'] = 'field_opendata_person';
   $handler->display->display_options['fields']['field_opendata_person']['table'] = 'field_data_field_opendata_person';
@@ -109,32 +126,42 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_access_level']['settings'] = array(
     'emphasis' => 0,
   );
-  /* Field: Content: Data Dictionary */
-  $handler->display->display_options['fields']['field_opendata_data_dictionary']['id'] = 'field_opendata_data_dictionary';
-  $handler->display->display_options['fields']['field_opendata_data_dictionary']['table'] = 'field_data_field_opendata_data_dictionary';
-  $handler->display->display_options['fields']['field_opendata_data_dictionary']['field'] = 'field_opendata_data_dictionary';
-  $handler->display->display_options['fields']['field_opendata_data_dictionary']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_data_dictionary']['settings'] = array(
-    'emphasis' => 0,
+  /* Field: Content: Bureau Code */
+  $handler->display->display_options['fields']['field_opendata_bureau_code']['id'] = 'field_opendata_bureau_code';
+  $handler->display->display_options['fields']['field_opendata_bureau_code']['table'] = 'field_data_field_opendata_bureau_code';
+  $handler->display->display_options['fields']['field_opendata_bureau_code']['field'] = 'field_opendata_bureau_code';
+  $handler->display->display_options['fields']['field_opendata_bureau_code']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
-  /* Field: Content: Download URL */
-  $handler->display->display_options['fields']['field_opendata_distribution']['id'] = 'field_opendata_distribution';
-  $handler->display->display_options['fields']['field_opendata_distribution']['table'] = 'field_data_field_opendata_distribution';
-  $handler->display->display_options['fields']['field_opendata_distribution']['field'] = 'field_opendata_distribution';
-  $handler->display->display_options['fields']['field_opendata_distribution']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_distribution']['click_sort_column'] = 'access_url';
-  $handler->display->display_options['fields']['field_opendata_distribution']['settings'] = array(
-    'emphasis' => 0,
+  $handler->display->display_options['fields']['field_opendata_bureau_code']['delta_offset'] = '0';
+  /* Field: Content: Program Code */
+  $handler->display->display_options['fields']['field_opendata_program_code']['id'] = 'field_opendata_program_code';
+  $handler->display->display_options['fields']['field_opendata_program_code']['table'] = 'field_data_field_opendata_program_code';
+  $handler->display->display_options['fields']['field_opendata_program_code']['field'] = 'field_opendata_program_code';
+  $handler->display->display_options['fields']['field_opendata_program_code']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
-  $handler->display->display_options['fields']['field_opendata_distribution']['delta_offset'] = '0';
-  /* Field: Content: Endpoint */
-  $handler->display->display_options['fields']['field_opendata_web_service']['id'] = 'field_opendata_web_service';
-  $handler->display->display_options['fields']['field_opendata_web_service']['table'] = 'field_data_field_opendata_web_service';
-  $handler->display->display_options['fields']['field_opendata_web_service']['field'] = 'field_opendata_web_service';
-  $handler->display->display_options['fields']['field_opendata_web_service']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_web_service']['settings'] = array(
-    'emphasis' => 0,
-  );
+  $handler->display->display_options['fields']['field_opendata_program_code']['delta_offset'] = '0';
   /* Field: Content: License */
   $handler->display->display_options['fields']['field_opendata_license']['id'] = 'field_opendata_license';
   $handler->display->display_options['fields']['field_opendata_license']['table'] = 'field_data_field_opendata_license';
@@ -142,6 +169,23 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_license']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_license']['settings'] = array(
     'emphasis' => 0,
+  );
+  /* Field: Content: Rights */
+  $handler->display->display_options['fields']['field_opendata_rights']['id'] = 'field_opendata_rights';
+  $handler->display->display_options['fields']['field_opendata_rights']['table'] = 'field_data_field_opendata_rights';
+  $handler->display->display_options['fields']['field_opendata_rights']['field'] = 'field_opendata_rights';
+  $handler->display->display_options['fields']['field_opendata_rights']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
   /* Field: Content: Spatial */
   $handler->display->display_options['fields']['field_opendata_spatial']['id'] = 'field_opendata_spatial';
@@ -159,6 +203,91 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_temporal']['settings'] = array(
     'emphasis' => 0,
   );
+  /* Field: Content: Distributions */
+  $handler->display->display_options['fields']['field_opendata_distribution']['id'] = 'field_opendata_distribution';
+  $handler->display->display_options['fields']['field_opendata_distribution']['table'] = 'field_data_field_opendata_distribution';
+  $handler->display->display_options['fields']['field_opendata_distribution']['field'] = 'field_opendata_distribution';
+  $handler->display->display_options['fields']['field_opendata_distribution']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_opendata_distribution']['click_sort_column'] = 'access_url';
+  $handler->display->display_options['fields']['field_opendata_distribution']['settings'] = array(
+    'emphasis' => 0,
+  );
+  $handler->display->display_options['fields']['field_opendata_distribution']['delta_offset'] = '0';
+  /* Field: Content: Frequency */
+  $handler->display->display_options['fields']['field_opendata_frequency']['id'] = 'field_opendata_frequency';
+  $handler->display->display_options['fields']['field_opendata_frequency']['table'] = 'field_data_field_opendata_frequency';
+  $handler->display->display_options['fields']['field_opendata_frequency']['field'] = 'field_opendata_frequency';
+  $handler->display->display_options['fields']['field_opendata_frequency']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_opendata_frequency']['settings'] = array(
+    'emphasis' => 0,
+  );
+  /* Field: Content: Data Standard */
+  $handler->display->display_options['fields']['field_opendata_conforms_to']['id'] = 'field_opendata_conforms_to';
+  $handler->display->display_options['fields']['field_opendata_conforms_to']['table'] = 'field_data_field_opendata_conforms_to';
+  $handler->display->display_options['fields']['field_opendata_conforms_to']['field'] = 'field_opendata_conforms_to';
+  $handler->display->display_options['fields']['field_opendata_conforms_to']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Data Quality */
+  $handler->display->display_options['fields']['field_opendata_data_quality']['id'] = 'field_opendata_data_quality';
+  $handler->display->display_options['fields']['field_opendata_data_quality']['table'] = 'field_data_field_opendata_data_quality';
+  $handler->display->display_options['fields']['field_opendata_data_quality']['field'] = 'field_opendata_data_quality';
+  $handler->display->display_options['fields']['field_opendata_data_quality']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_opendata_data_quality']['settings'] = array(
+    'emphasis' => 0,
+  );
+  /* Field: Content: Dataset Data Dictionary */
+  $handler->display->display_options['fields']['field_opendata_data_dictionary']['id'] = 'field_opendata_data_dictionary';
+  $handler->display->display_options['fields']['field_opendata_data_dictionary']['table'] = 'field_data_field_opendata_data_dictionary';
+  $handler->display->display_options['fields']['field_opendata_data_dictionary']['field'] = 'field_opendata_data_dictionary';
+  $handler->display->display_options['fields']['field_opendata_data_dictionary']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_opendata_data_dictionary']['settings'] = array(
+    'emphasis' => 0,
+  );
+  /* Field: Content: Data Dictionary Type */
+  $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['id'] = 'field_opendata_datadictionary_ty';
+  $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['table'] = 'field_data_field_opendata_datadictionary_ty';
+  $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['field'] = 'field_opendata_datadictionary_ty';
+  $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Collection */
+  $handler->display->display_options['fields']['field_opendata_ispartof']['id'] = 'field_opendata_ispartof';
+  $handler->display->display_options['fields']['field_opendata_ispartof']['table'] = 'field_data_field_opendata_ispartof';
+  $handler->display->display_options['fields']['field_opendata_ispartof']['field'] = 'field_opendata_ispartof';
+  $handler->display->display_options['fields']['field_opendata_ispartof']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
   /* Field: Content: Release Date */
   $handler->display->display_options['fields']['field_opendata_release_date']['id'] = 'field_opendata_release_date';
   $handler->display->display_options['fields']['field_opendata_release_date']['table'] = 'field_data_field_opendata_release_date';
@@ -166,14 +295,6 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_release_date']['label'] = 'Issued';
   $handler->display->display_options['fields']['field_opendata_release_date']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_release_date']['settings'] = array(
-    'emphasis' => 0,
-  );
-  /* Field: Content: Frequency */
-  $handler->display->display_options['fields']['field_opendata_frequency']['id'] = 'field_opendata_frequency';
-  $handler->display->display_options['fields']['field_opendata_frequency']['table'] = 'field_data_field_opendata_frequency';
-  $handler->display->display_options['fields']['field_opendata_frequency']['field'] = 'field_opendata_frequency';
-  $handler->display->display_options['fields']['field_opendata_frequency']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_frequency']['settings'] = array(
     'emphasis' => 0,
   );
   /* Field: Content: Language */
@@ -184,29 +305,30 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_language']['settings'] = array(
     'emphasis' => 0,
   );
-  /* Field: Content: Granularity */
-  $handler->display->display_options['fields']['field_opendata_granularity']['id'] = 'field_opendata_granularity';
-  $handler->display->display_options['fields']['field_opendata_granularity']['table'] = 'field_data_field_opendata_granularity';
-  $handler->display->display_options['fields']['field_opendata_granularity']['field'] = 'field_opendata_granularity';
-  $handler->display->display_options['fields']['field_opendata_granularity']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_granularity']['settings'] = array(
+  /* Field: Content: Homepage URL */
+  $handler->display->display_options['fields']['field_opendata_landing_page']['id'] = 'field_opendata_landing_page';
+  $handler->display->display_options['fields']['field_opendata_landing_page']['table'] = 'field_data_field_opendata_landing_page';
+  $handler->display->display_options['fields']['field_opendata_landing_page']['field'] = 'field_opendata_landing_page';
+  $handler->display->display_options['fields']['field_opendata_landing_page']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_opendata_landing_page']['settings'] = array(
     'emphasis' => 0,
   );
-  /* Field: Content: Data Quality */
-  $handler->display->display_options['fields']['field_opendata_data_quality']['id'] = 'field_opendata_data_quality';
-  $handler->display->display_options['fields']['field_opendata_data_quality']['table'] = 'field_data_field_opendata_data_quality';
-  $handler->display->display_options['fields']['field_opendata_data_quality']['field'] = 'field_opendata_data_quality';
-  $handler->display->display_options['fields']['field_opendata_data_quality']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_data_quality']['settings'] = array(
-    'emphasis' => 0,
-  );
-  /* Field: Content: Category */
-  $handler->display->display_options['fields']['field_opendata_theme']['id'] = 'field_opendata_theme';
-  $handler->display->display_options['fields']['field_opendata_theme']['table'] = 'field_data_field_opendata_theme';
-  $handler->display->display_options['fields']['field_opendata_theme']['field'] = 'field_opendata_theme';
-  $handler->display->display_options['fields']['field_opendata_theme']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_theme']['settings'] = array(
-    'emphasis' => 0,
+  /* Field: Content: Primary IT Investment UII */
+  $handler->display->display_options['fields']['field_opendata_primary_it_invest']['id'] = 'field_opendata_primary_it_invest';
+  $handler->display->display_options['fields']['field_opendata_primary_it_invest']['table'] = 'field_data_field_opendata_primary_it_invest';
+  $handler->display->display_options['fields']['field_opendata_primary_it_invest']['field'] = 'field_opendata_primary_it_invest';
+  $handler->display->display_options['fields']['field_opendata_primary_it_invest']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
   /* Field: Content: Related Documents */
   $handler->display->display_options['fields']['field_opendata_references']['id'] = 'field_opendata_references';
@@ -217,28 +339,29 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_references']['settings'] = array(
     'emphasis' => 0,
   );
-  /* Field: Content: Size */
-  $handler->display->display_options['fields']['field_opendata_size']['id'] = 'field_opendata_size';
-  $handler->display->display_options['fields']['field_opendata_size']['table'] = 'field_data_field_opendata_size';
-  $handler->display->display_options['fields']['field_opendata_size']['field'] = 'field_opendata_size';
-  $handler->display->display_options['fields']['field_opendata_size']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_size']['settings'] = array(
-    'emphasis' => 0,
+  /* Field: Content: System of Records */
+  $handler->display->display_options['fields']['field_opendata_system_of_records']['id'] = 'field_opendata_system_of_records';
+  $handler->display->display_options['fields']['field_opendata_system_of_records']['table'] = 'field_data_field_opendata_system_of_records';
+  $handler->display->display_options['fields']['field_opendata_system_of_records']['field'] = 'field_opendata_system_of_records';
+  $handler->display->display_options['fields']['field_opendata_system_of_records']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
-  /* Field: Content: Homepage URL */
-  $handler->display->display_options['fields']['field_opendata_landing_page']['id'] = 'field_opendata_landing_page';
-  $handler->display->display_options['fields']['field_opendata_landing_page']['table'] = 'field_data_field_opendata_landing_page';
-  $handler->display->display_options['fields']['field_opendata_landing_page']['field'] = 'field_opendata_landing_page';
-  $handler->display->display_options['fields']['field_opendata_landing_page']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_landing_page']['settings'] = array(
-    'emphasis' => 0,
-  );
-  /* Field: Content: RSS Feed */
-  $handler->display->display_options['fields']['field_opendata_feed']['id'] = 'field_opendata_feed';
-  $handler->display->display_options['fields']['field_opendata_feed']['table'] = 'field_data_field_opendata_feed';
-  $handler->display->display_options['fields']['field_opendata_feed']['field'] = 'field_opendata_feed';
-  $handler->display->display_options['fields']['field_opendata_feed']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_opendata_feed']['settings'] = array(
+  /* Field: Content: Category */
+  $handler->display->display_options['fields']['field_opendata_theme']['id'] = 'field_opendata_theme';
+  $handler->display->display_options['fields']['field_opendata_theme']['table'] = 'field_data_field_opendata_theme';
+  $handler->display->display_options['fields']['field_opendata_theme']['field'] = 'field_opendata_theme';
+  $handler->display->display_options['fields']['field_opendata_theme']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_opendata_theme']['settings'] = array(
     'emphasis' => 0,
   );
   /* Sort criterion: Content: Sticky */
@@ -268,6 +391,54 @@ function opendata_view_views_default_views() {
   /* Display: HTML */
   $handler = $view->new_display('page', 'HTML', 'page');
   $handler->display->display_options['path'] = 'data';
+  $translatables['opendata'] = array(
+    t('Master'),
+    t('Project Open Data'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Title'),
+    t('Description'),
+    t('Tags'),
+    t('Last Update'),
+    t('Publisher'),
+    t('subOrganizationOf'),
+    t('Person'),
+    t('Contact Email'),
+    t('Unique Identifier'),
+    t('Public Access Level'),
+    t('Bureau Code'),
+    t('Program Code'),
+    t('License'),
+    t('Rights'),
+    t('Spatial'),
+    t('Temporal'),
+    t('Distributions'),
+    t('Frequency'),
+    t('Data Standard'),
+    t('Data Quality'),
+    t('Dataset Data Dictionary'),
+    t('Data Dictionary Type'),
+    t('Collection'),
+    t('Issued'),
+    t('Language'),
+    t('Homepage URL'),
+    t('Primary IT Investment UII'),
+    t('References'),
+    t('System of Records'),
+    t('Category'),
+    t('HTML'),
+  );
   $export['opendata'] = $view;
 
   return $export;
