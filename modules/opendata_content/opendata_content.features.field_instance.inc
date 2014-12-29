@@ -10,55 +10,6 @@
 function opendata_content_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-opendata_dataset-field_opendata_datadictionary_ty'
-  $field_instances['node-opendata_dataset-field_opendata_datadictionary_ty'] = array(
-    'bundle' => 'opendata_dataset',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'list_default',
-        'weight' => 36,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_opendata_datadictionary_ty',
-    'label' => 'Data Dictionary Type',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance: 'node-opendata_dataset-field_opendata_access_level'
   $field_instances['node-opendata_dataset-field_opendata_access_level'] = array(
     'bundle' => 'opendata_dataset',
@@ -220,7 +171,8 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'URL to the data dictionary for the dataset or API. Note that documentation other than a Data Dictionary can be referenced using Related Documents as shown in the expanded fields.',
+    'description' => 'URL to the data dictionary for the dataset or API. Note that documentation other than a Data Dictionary can be referenced using Related Documents as shown in the expanded fields.<br>
+Example: <i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -250,9 +202,14 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_opendata_data_dictionary',
-    'label' => 'Data Dictionary',
+    'label' => 'Dataset Data Dictionary',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -263,7 +220,7 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 12,
     ),
   );
 
@@ -315,10 +272,59 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 0,
+        'display_label' => 1,
       ),
       'type' => 'options_onoff',
       'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-opendata_dataset-field_opendata_datadictionary_ty'
+  $field_instances['node-opendata_dataset-field_opendata_datadictionary_ty'] = array(
+    'bundle' => 'opendata_dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 36,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_opendata_datadictionary_ty',
+    'label' => 'Data Dictionary Type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 8,
     ),
   );
 
@@ -327,7 +333,8 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest.',
+    'description' => 'Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest.<br>
+Example: <i>This dataset contains a list of vegetables, including nutrition information and seasonality. Includes details on tomatoes, which are really fruit but considered a vegetable in this dataset.</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -360,6 +367,11 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     'label' => 'Description',
     'required' => 1,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -477,7 +489,7 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'A unique identifier for the dataset or API as maintained within an Agency catalog or database.',
+    'description' => 'A unique identifier for the dataset or API as maintained within an Agency catalog or database. <br> Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -510,6 +522,11 @@ Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>',
     'label' => 'Unique Identifier',
     'required' => 1,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -587,7 +604,8 @@ Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>',
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Comma separated list of keywords to help users discover your dataset. Please include terms that would be used by technical and non-technical users.',
+    'description' => 'Comma separated list of keywords to help users discover your dataset. Please include terms that would be used by technical and non-technical users. <br> 
+Example: <i>vegetables, greens, spinach,  nutrition</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -620,6 +638,11 @@ Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>',
     'label' => 'Tags',
     'required' => 1,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -639,7 +662,7 @@ Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>',
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Alternative landing page used to redirect user to a contextual, Agency-hosted "homepage" for the Dataset or API when selecting this resource from the Data.gov user interface.',
+    'description' => 'Alternative landing page used to redirect user to a contextual, Agency-hosted "homepage" for the Dataset or API when selecting this resource from the Data.gov user interface. <br> Example: <i>http://www.agency.gov/vegetables</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -672,6 +695,11 @@ Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>',
     'label' => 'Homepage URL',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -749,7 +777,8 @@ Example: <i>en-US</i>',
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The license dataset or API is published with. See <a href="http://project-open-data.github.io/open-licenses/">Open Licenses</a> for more information.',
+    'description' => 'The license dataset or API is published with. See <a href="http://project-open-data.github.io/open-licenses/">Open Licenses</a> for more information. <br>
+Example: <i>http://creativecommons.org/publicdomain/zero/1.0/</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -782,6 +811,11 @@ Example: <i>en-US</i>',
     'label' => 'License',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1073,7 +1107,7 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The publishing agency.',
+    'description' => 'The name of the entity publishing this dataset. <br> Example: <i>U.S. Department of Commerce</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1106,6 +1140,11 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'label' => 'Publisher',
     'required' => 1,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1125,7 +1164,8 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Related documents such as technical information about a dataset, developer documentation, etc.',
+    'description' => 'Related documents such as technical information about a dataset, developer documentation, etc. <br>
+Example: <i>http://www.agency.gov/fruits/fruit_data_documentation.html</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1158,6 +1198,11 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'label' => 'Related Documents',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1177,7 +1222,7 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Date of formal issuance. YYYY-MM-DD.',
+    'description' => 'Date of formal issuance. YYYY-MM-DD. <br> Example: <i>2001-01-15</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1210,6 +1255,11 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'label' => 'Release Date',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1229,7 +1279,8 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This may include information regarding access or restrictions based on privacy, security, or other policies. This should also serve as an explanation for the selected “accessLevel” including instructions for how to access a restricted file, if applicable, or explanation for why a “non-public” or “restricted public” data asset is not “public,” if applicable. ',
+    'description' => 'This may include information regarding access or restrictions based on privacy, security, or other policies. This should also serve as an explanation for the selected “accessLevel” including instructions for how to access a restricted file, if applicable, or explanation for why a “non-public” or “restricted public” data asset is not “public,” if applicable. <br>
+Example: <i>This dataset contains Personally Identifiable Information and could not be released for public access.</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1277,7 +1328,7 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -1329,7 +1380,7 @@ The <a href="https://project-open-data.cio.gov/v1.1/schema/#programCode" target=
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -1396,7 +1447,7 @@ Example: <i>U.S. Government | General Services Administration | Office of Citize
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'URL to the System of Records related to this dataset.',
+    'description' => 'URL to the System of Records Notice (SORN) related to this dataset. <br> Example: <i>https://www.federalregister.gov/articles/2002/04/08/02-7376/privacy-act-of-1974</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1429,6 +1480,11 @@ Example: <i>U.S. Government | General Services Administration | Office of Citize
     'label' => 'System of Records',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1491,7 +1547,7 @@ Example: <i>U.S. Government | General Services Administration | Office of Citize
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -1500,7 +1556,7 @@ Example: <i>U.S. Government | General Services Administration | Office of Citize
     'bundle' => 'opendata_dataset',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Main thematic category of the dataset.',
+    'description' => 'Main thematic categories of the dataset. <br> Example: <i>vegetables</i>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1533,6 +1589,11 @@ Example: <i>U.S. Government | General Services Administration | Office of Citize
     'label' => 'Category',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1551,22 +1612,23 @@ Example: <i>U.S. Government | General Services Administration | Office of Citize
   // Included for use with string extractors like potx.
   t('A pipe delimited list of publisher organizations starting with the main organization and cascading down to the specific sub-organization. <br>
 Example: <i>U.S. Government | General Services Administration | Office of Citizen Services and Innovative Technologies | Widget Services</i>');
-  t('A unique identifier for the dataset or API as maintained within an Agency catalog or database.');
-  t('Alternative landing page used to redirect user to a contextual, Agency-hosted "homepage" for the Dataset or API when selecting this resource from the Data.gov user interface.');
+  t('A unique identifier for the dataset or API as maintained within an Agency catalog or database. <br> Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>');
+  t('Alternative landing page used to redirect user to a contextual, Agency-hosted "homepage" for the Dataset or API when selecting this resource from the Data.gov user interface. <br> Example: <i>http://www.agency.gov/vegetables</i>');
   t('Bureau Code');
   t('Category');
   t('Check here if this dataset meets the agency\'s Information Quality Guidelines.');
   t('Collection');
-  t('Comma separated list of keywords to help users discover your dataset. Please include terms that would be used by technical and non-technical users.');
+  t('Comma separated list of keywords to help users discover your dataset. Please include terms that would be used by technical and non-technical users. <br> 
+Example: <i>vegetables, greens, spinach,  nutrition</i>');
   t('Contact Email');
   t('Contact Name');
   t('Contact person\'s email address.');
   t('Contact person\'s name for the asset.');
-  t('Data Dictionary');
   t('Data Dictionary Type');
   t('Data Quality');
   t('Data Standard');
-  t('Date of formal issuance. YYYY-MM-DD.');
+  t('Dataset Data Dictionary');
+  t('Date of formal issuance. YYYY-MM-DD. <br> Example: <i>2001-01-15</i>');
   t('Describes each manner through which the data is made available, including URL providing direct access to the downloadable distribution of a dataset and the file format (e.g. csv, xls, json, etc.) or API type of the distribution.');
   t('Description');
   t('Distributions');
@@ -1579,18 +1641,20 @@ Example: <i>023-000000001</i>');
   t('Frequency');
   t('Frequency with which dataset is published.');
   t('Homepage URL');
-  t('Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest.');
+  t('Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest.<br>
+Example: <i>This dataset contains a list of vegetables, including nutrition information and seasonality. Includes details on tomatoes, which are really fruit but considered a vegetable in this dataset.</i>');
   t('Language');
   t('Last Update');
   t('License');
-  t('Main thematic category of the dataset.');
+  t('Main thematic categories of the dataset. <br> Example: <i>vegetables</i>');
   t('Most recent date on which the dataset was changed, updated or modified. Dates should be formatted as YYYY-MM-DD. Specify "01" as the day if unknown. If this file is brand-new, enter the issued date here as well.');
   t('Primary IT Investment UII');
   t('Program Code');
   t('Public Access Level');
   t('Publisher');
   t('Related Documents');
-  t('Related documents such as technical information about a dataset, developer documentation, etc.');
+  t('Related documents such as technical information about a dataset, developer documentation, etc. <br>
+Example: <i>http://www.agency.gov/fruits/fruit_data_documentation.html</i>');
   t('Release Date');
   t('Rights');
   t('Spatial');
@@ -1602,16 +1666,19 @@ Example: <i>http://dx.doi.org/10.7927/H4PZ56R2</i>');
   t('The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: Public (is or could be made publicly available), Restricted Public (available under certain conditions), or non-Public (never able to be made publicly available).');
   t('The language of the dataset. This should adhere to the RFC 5646 standard.  <br>
 Example: <i>en-US</i>');
-  t('The license dataset or API is published with. See <a href="http://project-open-data.github.io/open-licenses/">Open Licenses</a> for more information.');
+  t('The license dataset or API is published with. See <a href="http://project-open-data.github.io/open-licenses/">Open Licenses</a> for more information. <br>
+Example: <i>http://creativecommons.org/publicdomain/zero/1.0/</i>');
   t('The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary');
-  t('The publishing agency.');
+  t('The name of the entity publishing this dataset. <br> Example: <i>U.S. Department of Commerce</i>');
   t('The range of spatial applicability of a dataset. Could include a spatial region like a bounding box or a named place. This field should contain one of the following types of content: (1) a bounding coordinate box for the dataset represented in latitude / longitude pairs where the coordinates are specified in decimal degrees and in the order of: minimum longitude, minimum latitude, maximum longitude, maximum latitude; (2) a latitude / longitude pair (in decimal degrees) representing a point where the dataset is relevant; (3) a geographic feature expressed in <a href="http://www.ogcnetwork.net/gml-sf">Geography Markup Language using the Simple Features Profile</a>; or (4) a geographic feature from the <a href="http://project-open-data.github.dev/schema/www.geonames.org">GeoNames database</a>.');
   t('The range of temporal applicability of a dataset (i.e., a start and end date of applicability for the data). This field should contain an interval of time defined by start and end dates. Dates should be formatted as pairs of {start date, end date} in the format YYYY-MM-DD hh:mm:ss using 24 hour clock time notation (e.g., 2011-02-14 12:00:00, 2013-02-14 12:00:00).');
   t('This is used to specify a data dictionary or schema that defines fields or column headings in the dataset.  At the dataset level it’s assumed to be a human readable HTML webpage or PDF document.<br>
 Example:<i>http://www.agency.gov/vegetables/definitions.pdf</i>');
-  t('This may include information regarding access or restrictions based on privacy, security, or other policies. This should also serve as an explanation for the selected “accessLevel” including instructions for how to access a restricted file, if applicable, or explanation for why a “non-public” or “restricted public” data asset is not “public,” if applicable. ');
-  t('URL to the System of Records related to this dataset.');
-  t('URL to the data dictionary for the dataset or API. Note that documentation other than a Data Dictionary can be referenced using Related Documents as shown in the expanded fields.');
+  t('This may include information regarding access or restrictions based on privacy, security, or other policies. This should also serve as an explanation for the selected “accessLevel” including instructions for how to access a restricted file, if applicable, or explanation for why a “non-public” or “restricted public” data asset is not “public,” if applicable. <br>
+Example: <i>This dataset contains Personally Identifiable Information and could not be released for public access.</i>');
+  t('URL to the System of Records Notice (SORN) related to this dataset. <br> Example: <i>https://www.federalregister.gov/articles/2002/04/08/02-7376/privacy-act-of-1974</i>');
+  t('URL to the data dictionary for the dataset or API. Note that documentation other than a Data Dictionary can be referenced using Related Documents as shown in the expanded fields.<br>
+Example: <i>http://www.agency.gov/vegetables/definitions.pdf</i>');
   t('Unique Identifier');
   t('subOrganizationOf');
 

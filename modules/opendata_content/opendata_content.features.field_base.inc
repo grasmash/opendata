@@ -10,40 +10,6 @@
 function opendata_content_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_opendata_datadictionary_ty'
-  $field_bases['field_opendata_datadictionary_ty'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_opendata_datadictionary_ty',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'application/json' => 'application/json',
-        'application/pdf' => 'application/pdf',
-        'application/xml' => 'application/xml',
-        'application/atom+xml' => 'application/atom+xml',
-        'application/rdf+xml' => 'application/rdf+xml',
-        'application/rss+xml' => 'application/rss+xml',
-        'text/csv' => 'text/csv',
-        'application/vnd.oasis.opendocument.spreadsheet' => 'application/vnd.oasis.opendocument.spreadsheet',
-        'application/vnd.ms-excel' => 'application/vnd.ms-excel',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_opendata_access_level'
   $field_bases['field_opendata_access_level'] = array(
     'active' => 1,
@@ -547,6 +513,40 @@ function opendata_content_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
+  // Exported field_base: 'field_opendata_datadictionary_ty'
+  $field_bases['field_opendata_datadictionary_ty'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_opendata_datadictionary_ty',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'application/json' => 'application/json',
+        'application/pdf' => 'application/pdf',
+        'application/xml' => 'application/xml',
+        'application/atom+xml' => 'application/atom+xml',
+        'application/rdf+xml' => 'application/rdf+xml',
+        'application/rss+xml' => 'application/rss+xml',
+        'text/csv' => 'text/csv',
+        'application/vnd.oasis.opendocument.spreadsheet' => 'application/vnd.oasis.opendocument.spreadsheet',
+        'application/vnd.ms-excel' => 'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_opendata_description'
   $field_bases['field_opendata_description'] = array(
     'active' => 1,
@@ -586,11 +586,11 @@ function opendata_content_field_default_field_bases() {
       'access_url' => array(
         0 => 'access_url',
       ),
-      'format' => array(
-        0 => 'format',
-      ),
       'download_url' => array(
         0 => 'download_url',
+      ),
+      'format' => array(
+        0 => 'format',
       ),
     ),
     'locked' => 0,
@@ -617,11 +617,24 @@ function opendata_content_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'hourly' => 'hourly',
-        'daily' => 'daily',
-        'weekly' => 'weekly',
-        'yearly' => 'yearly',
-        'other' => 'other',
+        'R/P1Y' => 'Annual',
+        'R/P2Y' => 'Biennial',
+        'R/P2M ' => 'Bimonthly',
+        'R/P2W' => 'Biweekly',
+        'R/PT1S' => 'Continuously updated',
+        'R/P1D' => 'Daily',
+        'R/P10Y' => 'Decennial',
+        'R/P1M' => 'Monthly',
+        'R/P4Y' => 'Quadrennial',
+        'R/P3M' => 'Quarterly',
+        'R/P6M' => 'Semiannual',
+        'R/P0.5M' => 'Semimonthly',
+        'R/P3.5D' => 'Semiweekly',
+        'R/P0.33M' => 'Three times a month',
+        'R/P0.33W' => 'Three times a week',
+        'R/P4M' => 'Three times a year',
+        'R/P3Y' => 'Triennial',
+        'R/P1W' => 'Weekly',
       ),
       'allowed_values_function' => '',
     ),
@@ -965,7 +978,7 @@ function opendata_content_field_default_field_bases() {
   // Exported field_base: 'field_opendata_references'
   $field_bases['field_opendata_references'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_opendata_references',
@@ -1168,7 +1181,7 @@ function opendata_content_field_default_field_bases() {
   // Exported field_base: 'field_opendata_theme'
   $field_bases['field_opendata_theme'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_opendata_theme',

@@ -23,11 +23,32 @@ function opendata_content_node_validate($node, $form, &$form_state) {
       form_set_error('field_opendata_modified', t('The provided Last Update value is not a valid date or is not in YYYY-MM-DD format'));
     }
 
-    // If present, verify dataDictionary is a URL.
-    $data_dictionary = field_get_items('node', $node, 'field_opendata_data_dictionary', $node->language);
-    if (!empty($data_dictionary[0]['value'])) {
-      if (!valid_url($data_dictionary[0]['value'], TRUE)) {
-        form_set_error('field_opendata_data_dictionary', t('The provided Data Dictionary URL is not valid'));
+    // Validate any URLS to be saved.
+    // @TODO Build validation of distribution URL fields too.
+    // @TODO get the friendly names of the fields dynamically so they sync.
+    $url_fields = array(
+      'field_opendata_data_dictionary' => t('Dataset Data Dictionary'),
+      'field_opendata_conforms_to' => t('Data Standard'),
+      'field_opendata_landing_page' => t('Homepage URL'),
+      'field_opendata_ispartof' => t('Collection'),
+      'field_opendata_system_of_records' => t('System of Records'),
+      'field_opendata_references' => t('Related Documents'),
+      'field_opendata_license' => t('License'),
+    );
+
+    foreach ($url_fields as $url_field => $field_name) {
+      $values = field_get_items('node', $node, $url_field, $node->language);
+      if (!empty($values[0]['value'])) {
+        foreach ($values as $url) {
+          if (!empty($url['value']) && !valid_url($url['value'], TRUE)) {
+            form_set_error($url_field, t('The URL: %url in %field_name is not valid.', array(
+              '%field_name' => $field_name,
+              '%url' => $url['value'],
+                )
+              )
+            );
+          }
+        }
       }
     }
   }
