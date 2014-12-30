@@ -191,6 +191,14 @@ function opendata_distribution_field_field_widget_form(&$form, &$form_state, $fi
         'application/vnd.ms-excel',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       )),
+      'Other' => drupal_map_assoc(array(
+        'application/swagger+json',
+        'application/raml+yaml',
+        'application/vnd.apiblueprint.ast',
+        'application/hal+json',
+        'application/hal+xml',
+        'application/ld+json',
+      )),
     );
 
     $element['access_url'] = array(
