@@ -80,6 +80,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_suborganizationof']['id'] = 'field_opendata_suborganizationof';
   $handler->display->display_options['fields']['field_opendata_suborganizationof']['table'] = 'field_data_field_opendata_suborganizationof';
   $handler->display->display_options['fields']['field_opendata_suborganizationof']['field'] = 'field_opendata_suborganizationof';
+  $handler->display->display_options['fields']['field_opendata_suborganizationof']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_suborganizationof']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -225,6 +226,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_conforms_to']['id'] = 'field_opendata_conforms_to';
   $handler->display->display_options['fields']['field_opendata_conforms_to']['table'] = 'field_data_field_opendata_conforms_to';
   $handler->display->display_options['fields']['field_opendata_conforms_to']['field'] = 'field_opendata_conforms_to';
+  $handler->display->display_options['fields']['field_opendata_conforms_to']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_conforms_to']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -244,7 +246,17 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_data_quality']['field'] = 'field_opendata_data_quality';
   $handler->display->display_options['fields']['field_opendata_data_quality']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_data_quality']['settings'] = array(
-    'emphasis' => 0,
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
   /* Field: Content: Dataset Data Dictionary */
   $handler->display->display_options['fields']['field_opendata_data_dictionary']['id'] = 'field_opendata_data_dictionary';
@@ -258,6 +270,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['id'] = 'field_opendata_datadictionary_ty';
   $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['table'] = 'field_data_field_opendata_datadictionary_ty';
   $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['field'] = 'field_opendata_datadictionary_ty';
+  $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_datadictionary_ty']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -275,6 +288,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_ispartof']['id'] = 'field_opendata_ispartof';
   $handler->display->display_options['fields']['field_opendata_ispartof']['table'] = 'field_data_field_opendata_ispartof';
   $handler->display->display_options['fields']['field_opendata_ispartof']['field'] = 'field_opendata_ispartof';
+  $handler->display->display_options['fields']['field_opendata_ispartof']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_ispartof']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -317,6 +331,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_primary_it_invest']['id'] = 'field_opendata_primary_it_invest';
   $handler->display->display_options['fields']['field_opendata_primary_it_invest']['table'] = 'field_data_field_opendata_primary_it_invest';
   $handler->display->display_options['fields']['field_opendata_primary_it_invest']['field'] = 'field_opendata_primary_it_invest';
+  $handler->display->display_options['fields']['field_opendata_primary_it_invest']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_primary_it_invest']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -343,6 +358,7 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['field_opendata_system_of_records']['id'] = 'field_opendata_system_of_records';
   $handler->display->display_options['fields']['field_opendata_system_of_records']['table'] = 'field_data_field_opendata_system_of_records';
   $handler->display->display_options['fields']['field_opendata_system_of_records']['field'] = 'field_opendata_system_of_records';
+  $handler->display->display_options['fields']['field_opendata_system_of_records']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_opendata_system_of_records']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
