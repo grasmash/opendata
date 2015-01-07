@@ -81,3 +81,7 @@ features[field_instance][] = node-opendata_dataset-field_opendata_theme
 features[node][] = opendata_dataset
 features[variable][] = field_bundle_settings_node__opendata_dataset
 mtime = 1418853953
+
+; Migrate classes.
+files[] = classes/OpenDataMigration.inc
+files[] = classes/OpenDataJSONtoDatasetMigration.inc
