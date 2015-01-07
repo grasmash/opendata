@@ -11,12 +11,16 @@
 function opendata_data_json() {
 
   $nodes = opendata_get_datasets();
-  $rows = opendata_build_rows($nodes);
+  $datasets = opendata_build_rows($nodes);
+  $feed = array(
+    'conformsTo' => 'https://project-open-data.cio.gov/v1.1/schema',
+    'dataset' => $datasets,
+  );
 
   // We are returning JSON, so tell the browser.
   drupal_add_http_header('Content-Type', 'application/json');
 
-  echo str_replace('\\/', '/', drupal_json_encode($rows));
+  echo str_replace('\\/', '/', drupal_json_encode($feed));
 }
 
 /**
