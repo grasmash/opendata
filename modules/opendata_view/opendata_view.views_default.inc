@@ -41,9 +41,10 @@ function opendata_view_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Content: Description */
   $handler->display->display_options['fields']['field_opendata_description']['id'] = 'field_opendata_description';
   $handler->display->display_options['fields']['field_opendata_description']['table'] = 'field_data_field_opendata_description';
@@ -423,7 +424,6 @@ function opendata_view_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Title'),
     t('Description'),
     t('Tags'),
     t('Last Update'),
