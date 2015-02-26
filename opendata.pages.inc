@@ -274,10 +274,26 @@ function opendata_build_contactpoint($node) {
   return array(
     '@type' => 'vcard:Contact',
     'fn' => opendata_get_field_value($node, 'field_opendata_person', 'value'),
-    'hasEmail' => opendata_get_field_value($node, 'field_opendata_mbox', 'email'),
+    'hasEmail' => opendata_get_email($node),
   );
 }
 
+/**
+ * Retrieves the field_opendata_mbox and prefixes it if needed.
+ *
+ * @param object $node
+ *   The node object for the dataset.
+ *
+ * @return string
+ *   The email properly prefixed.
+ */
+function opendata_get_email($node) {
+  $email = opendata_get_field_value($node, 'field_opendata_mbox', 'email');
+  if (!empty($email) && (strpos($email, 'mailto:') === FALSE)) {
+    $email = 'mailto:' . $email;
+  }
+  return $email;
+}
 
 /**
  * Remove empty first level elements from arrays and objects.
