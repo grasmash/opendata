@@ -27,7 +27,7 @@ function opendata_content_node_info() {
       'description' => t('Add an item to your data listing. This content type includes all "common core" required fields described by Project Open Data here: http://project-open-data.github.io/schema/.'),
       'has_title' => '1',
       'title_label' => t('Title'),
-      'help' => t('Human-readable name of the asset. Should be in plain English and include sufficient detail to facilitate search and discovery.'),
+      'help' => t('Human-readable name of the asset should be in plain English and include sufficient detail to facilitate search and discovery.'),
     ),
   );
   return $items;
